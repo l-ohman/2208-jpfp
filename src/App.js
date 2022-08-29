@@ -1,13 +1,14 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
+import AllCampuses from "./components/AllCampuses";
+import AllStudents from "./components/AllStudents";
+import { useDispatch } from "react-redux";
 
 import { fetchStudents } from "./store/students";
 import { fetchCampuses } from "./store/campuses";
 
 function App(){
     const dispatch = useDispatch();
-    const state = useSelector(state => state);
-    
+
     React.useEffect(() => {
         dispatch(fetchStudents())
         dispatch(fetchCampuses())
@@ -15,7 +16,11 @@ function App(){
 
     return(
         <>
-            <div>Test Your App</div>
+            <h1>Campuses</h1>
+            <AllCampuses />
+            <hr />
+            <h1>Students</h1>
+            <AllStudents />
         </>
 
     )
