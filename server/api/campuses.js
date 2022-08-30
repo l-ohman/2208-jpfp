@@ -30,13 +30,20 @@ router.get("/:id", async (req, res, next) => {
 
 router.post("/", async (req, res, next) => {
   try {
-    res.status(200).send(await Campus.create(req.body));
+    res.status(201).send(await Campus.create(req.body));
   } catch (error) {
     next(error.message);
   }
 });
 
-// router.put();
+router.put("/:id", async (req, res, next) => {
+  try {
+    const campusToUpdate = await Campus.findByPk(req.params.id);
+    res.send(await campusToUpdate.update(req.body));
+  } catch (error) {
+    next(error.message);
+  }  
+});
 
 router.delete("/:id", async (req, res, next) => {
   try {

@@ -36,7 +36,14 @@ router.post("/", async (req, res, next) => {
   }
 });
 
-// router.put();
+router.put("/:id", async (req, res, next) => {
+  try {
+    const studentToUpdate = await Student.findByPk(req.params.id);
+    res.send(await studentToUpdate.update(req.body));
+  } catch (error) {
+    next(error.message);
+  }  
+});
 
 router.delete("/:id", async (req, res, next) => {
   try {
