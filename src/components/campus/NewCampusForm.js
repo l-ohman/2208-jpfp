@@ -27,6 +27,7 @@ const NewCampusForm = () => {
 
   return (
     <form onSubmit={handleSubmit}>
+
       <label>
         Campus name:
         <input
@@ -37,6 +38,7 @@ const NewCampusForm = () => {
         />
         <br />
       </label>
+
       <label>
         Campus address:
         <input
@@ -47,6 +49,7 @@ const NewCampusForm = () => {
         />
         <br />
       </label>
+
       <label>
         Write a brief description of the campus:
         <input
@@ -57,6 +60,7 @@ const NewCampusForm = () => {
         />
         <br />
       </label>
+      
       <button type="submit">Submit New Campus</button>
     </form>
   );

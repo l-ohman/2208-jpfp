@@ -6,6 +6,7 @@ import SingleCampusView from "./campus/SingleCampusView";
 import SingleStudentListed from "./student/SingleStudentListed";
 import SingleStudentView from "./student/SingleStudentView";
 import NewCampusForm from "./campus/NewCampusForm";
+import NewStudentForm from "./student/NewStudentForm";
 
 export {
     Navbar,
@@ -16,4 +17,5 @@ export {
     SingleStudentListed,
     SingleStudentView,
     NewCampusForm,
+    NewStudentForm,
 }

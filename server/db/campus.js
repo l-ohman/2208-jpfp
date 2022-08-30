@@ -1,12 +1,12 @@
 const Sequelize = require("sequelize");
 const db = require("./database");
 
-const Campus = db.define('campus', {
+const Campus = db.define("campus", {
   name: {
     type: Sequelize.STRING,
     allowNull: false,
     validate: {
-      notEmpty: true
+      notEmpty: true,
     },
   },
   imageUrl: {
@@ -17,7 +17,7 @@ const Campus = db.define('campus', {
     type: Sequelize.STRING,
     allowNull: false,
     validate: {
-      notEmpty: true
+      notEmpty: true,
     },
   },
   description: {

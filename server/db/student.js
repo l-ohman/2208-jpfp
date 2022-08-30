@@ -1,33 +1,49 @@
 const Sequelize = require("sequelize");
 const db = require("./database");
 
-const Student = db.define('student', {
-    firstName: {
-        type: Sequelize.STRING,
-        allowNull: false,
+const Student = db.define("student", {
+  firstName: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true,
     },
-    lastName: {
-        type: Sequelize.STRING,
-        allowNull: false,
+  },
+  lastName: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true,
     },
-    email: {
-        type: Sequelize.STRING,
-        allowNull: false,
-        validate: {
-            isEmail: true,
-        },
+  },
+  fullName: {
+    // for ease of use
+    type: Sequelize.VIRTUAL,
+    get() {
+      return `${this.firstName} ${this.lastName}`;
     },
-    imageUrl: {
-        type: Sequelize.STRING,
-        defaultValue: "",
+    set(val) {
+      throw new Error("Cannot manually set 'fullName'");
     },
-    gpa: {
-        type: Sequelize.DECIMAL,
-        validate: {
-            min: 0,
-            max: 4,
-        },
+  },
+  email: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    validate: {
+      isEmail: true,
     },
-})
+  },
+  imageUrl: {
+    type: Sequelize.STRING,
+    defaultValue: "",
+  },
+  gpa: {
+    type: Sequelize.DECIMAL,
+    validate: {
+      min: 0,
+      max: 4,
+    },
+  },
+});
 
 module.exports = Student;
