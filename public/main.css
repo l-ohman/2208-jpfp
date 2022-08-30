@@ -67,6 +67,10 @@ form > label > input {
     height: fit-content;
 }
 
+.leftContainer > h3 {
+    text-align: center;
+}
+
 /* .deleteBtnContainer {
 
 } */

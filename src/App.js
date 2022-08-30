@@ -18,6 +18,7 @@ function App() {
   React.useEffect(() => {
     dispatch(fetchStudents());
     dispatch(fetchCampuses());
+    // Should add some 'contentLoaded' boolean to state for displaying a "Loading..." message
   }, []);
 
   return (

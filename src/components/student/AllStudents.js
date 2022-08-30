@@ -8,9 +8,9 @@ const AllStudents = () => {
   return (
     <>
       <div className="leftContainer">
-        {students.map((student) => (
+        {students.length > 0 ? students.map((student) => (
           <SingleStudentListed key={student.id} data={student} />
-        ))}
+        )) : <h3>No students found!</h3>}
       </div>
       <NewStudentForm />
     </>

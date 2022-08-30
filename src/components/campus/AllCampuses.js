@@ -8,9 +8,9 @@ const AllCampuses = () => {
   return (
     <>
       <div className="leftContainer">
-        {campuses.map((campus) => (
+        {campuses.length > 0 ? campuses.map((campus) => (
           <SingleCampusListed key={campus.id} data={campus} />
-        ))}
+        )) : <h3>No campuses found!</h3>}
       </div>
       <NewCampusForm />
     </>

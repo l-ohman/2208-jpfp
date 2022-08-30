@@ -114,8 +114,8 @@ Congrats! You have completed your third vertical slice! Make sure to `commit -m 
 
 - [x] In the all-students view, include an `X` button next to each student
 - Clicking the `X` button should:
-  - [ ] Make an AJAX request that causes that student to be removed from database
-  - [ ] Remove the student from the list of students without needing to refresh the page
+  - [x] Make an AJAX request that causes that student to be removed from database
+  - [x] Remove the student from the list of students without needing to refresh the page
 
 #### Backend
 

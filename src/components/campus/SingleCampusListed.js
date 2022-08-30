@@ -8,7 +8,7 @@ const SingleCampusListed = ({ data: campus }) => {
       <Link to={`/campuses/${campus.id}`}>
         <h2>{campus.name}</h2>
       </Link>
-      <DeleteItem id={campus.id} name={campus.name}/>
+      <DeleteItem id={campus.id} name={campus.name} type="campus" />
       <p>Located at: {campus.address}</p>
       <img src={campus.imageUrl} />
       <hr />
