@@ -7,12 +7,12 @@ const AllStudents = () => {
 
   return (
     <>
-      <div>
+      <div className="leftContainer">
         {students.map((student) => (
-          <SingleStudentListed key={student.id} data={student} className="leftContainer"/>
+          <SingleStudentListed key={student.id} data={student} />
         ))}
       </div>
-      <NewStudentForm className="rightContainer"/>
+      <NewStudentForm />
     </>
   );
 };

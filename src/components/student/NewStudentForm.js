@@ -24,13 +24,13 @@ const NewStudentForm = () => {
     event.preventDefault();
 
     // Necessary to convert 'gpa' to number type before submitting to DB
-    let newStudent = {...form};
+    let newStudent = { ...form };
     // If it is an empty string, don't set 'gpa' to 0
     if (newStudent.gpa.length === 0) {
-        delete newStudent.gpa;
+      delete newStudent.gpa;
     } else {
-        // Needs a fix - this allows submitting characters for GPA field (but correctly goes into DB as null)
-        newStudent.gpa = +newStudent.gpa;
+      // Needs a fix - this allows submitting characters for GPA field (but correctly goes into DB as null)
+      newStudent.gpa = +newStudent.gpa;
     }
 
     dispatch(createStudent(newStudent));
@@ -38,53 +38,51 @@ const NewStudentForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        First name:
-        <input
-          name="firstName"
-          value={form.firstName}
-          type="text"
-          onChange={handleChange}
-        />
-        <br />
-      </label>
+    <div className="rightContainer">
+      <form onSubmit={handleSubmit}>
+        <label>
+          First name:
+          <input
+            name="firstName"
+            value={form.firstName}
+            type="text"
+            onChange={handleChange}
+          />
+        </label>
 
-      <label>
-        Last name:
-        <input
-          name="lastName"
-          value={form.lastName}
-          type="text"
-          onChange={handleChange}
-        />
-        <br />
-      </label>
+        <label>
+          Last name:
+          <input
+            name="lastName"
+            value={form.lastName}
+            type="text"
+            onChange={handleChange}
+          />
+        </label>
 
-      <label>
-        Student email:
-        <input
-          name="email"
-          value={form.email}
-          type="text"
-          onChange={handleChange}
-        />
-        <br />
-      </label>
+        <label>
+          Student email:
+          <input
+            name="email"
+            value={form.email}
+            type="text"
+            onChange={handleChange}
+          />
+        </label>
 
-      <label>
-        Student GPA:
-        <input
-          name="gpa"
-          value={form.gpa}
-          type="text"
-          onChange={handleChange}
-        />
-        <br />
-      </label>
+        <label>
+          Student GPA:
+          <input
+            name="gpa"
+            value={form.gpa}
+            type="text"
+            onChange={handleChange}
+          />
+        </label>
 
-      <button type="submit">Submit New Student</button>
-    </form>
+        <button type="submit">Submit New Student</button>
+      </form>
+    </div>
   );
 };
 

@@ -6,11 +6,14 @@ const Navbar = () => {
   const state = useSelector((state) => state);
 
   return (
-    <h1 id="navbar">
-      <Link to={"/campuses"}>Campuses ({state.campuses.length})</Link>
-      {" | "}
-      <Link to={"/students"}>Students ({state.students.length})</Link>
-    </h1>
+    <div id="navbar">
+      <h1>
+        <Link to={"/campuses"}>Campuses ({state.campuses.length})</Link>
+      </h1>
+      <h1>
+        <Link to={"/students"}>Students ({state.students.length})</Link>
+      </h1>
+    </div>
   );
 };
 

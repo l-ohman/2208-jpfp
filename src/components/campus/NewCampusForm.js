@@ -26,43 +26,41 @@ const NewCampusForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <div className="rightContainer">
+      <form onSubmit={handleSubmit}>
+        <label>
+          Campus name:
+          <input
+            name="name"
+            value={form.name}
+            type="text"
+            onChange={handleChange}
+          />
+        </label>
 
-      <label>
-        Campus name:
-        <input
-          name="name"
-          value={form.name}
-          type="text"
-          onChange={handleChange}
-        />
-        <br />
-      </label>
+        <label>
+          Campus address:
+          <input
+            name="address"
+            value={form.address}
+            type="text"
+            onChange={handleChange}
+          />
+        </label>
 
-      <label>
-        Campus address:
-        <input
-          name="address"
-          value={form.address}
-          type="text"
-          onChange={handleChange}
-        />
-        <br />
-      </label>
+        <label>
+          Description:
+          <input
+            name="description"
+            value={form.description}
+            type="text"
+            onChange={handleChange}
+          />
+        </label>
 
-      <label>
-        Write a brief description of the campus:
-        <input
-          name="description"
-          value={form.description}
-          type="text"
-          onChange={handleChange}
-        />
-        <br />
-      </label>
-      
-      <button type="submit">Submit New Campus</button>
-    </form>
+        <button type="submit">Submit New Campus</button>
+      </form>
+    </div>
   );
 };
 
