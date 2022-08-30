@@ -66,3 +66,18 @@ form > label > input {
     margin-top: 10px;
     height: fit-content;
 }
+
+/* .deleteBtnContainer {
+
+} */
+
+.deleteBtn {
+    width: 20px;
+    height: 20px;
+    background-color: darkred;
+    color: white;
+    border: 1px solid white;
+}
+.deleteBtn:hover {
+    background-color: red;
+}

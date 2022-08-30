@@ -7,15 +7,17 @@ import SingleStudentListed from "./student/SingleStudentListed";
 import SingleStudentView from "./student/SingleStudentView";
 import NewCampusForm from "./campus/NewCampusForm";
 import NewStudentForm from "./student/NewStudentForm";
+import DeleteItem from "./DeleteItem";
 
 export {
-    Navbar,
-    AllCampuses,
-    AllStudents,
-    SingleCampusListed,
-    SingleCampusView,
-    SingleStudentListed,
-    SingleStudentView,
-    NewCampusForm,
-    NewStudentForm,
-}
+  Navbar,
+  AllCampuses,
+  AllStudents,
+  SingleCampusListed,
+  SingleCampusView,
+  SingleStudentListed,
+  SingleStudentView,
+  NewCampusForm,
+  NewStudentForm,
+  DeleteItem,
+};

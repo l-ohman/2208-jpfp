@@ -30,13 +30,25 @@ router.get("/:id", async (req, res, next) => {
 
 router.post("/", async (req, res, next) => {
   try {
-    res.status(201).send(await Campus.create(req.body))
+    res.status(200).send(await Campus.create(req.body));
   } catch (error) {
     next(error.message);
   }
-})
+});
 
 // router.put();
-// router.delete();
+
+router.delete("/:id", async (req, res, next) => {
+  try {
+    await Campus.destroy({
+      where: {
+        id: req.params.id,
+      },
+    });
+    res.send(200);
+  } catch (error) {
+    next(error.message);
+  }
+});
 
 module.exports = router;
