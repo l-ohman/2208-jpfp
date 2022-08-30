@@ -30,13 +30,11 @@ router.get("/:id", async (req, res, next) => {
 
 router.post("/", async (req, res, next) => {
   try {
-    await Student.create(req.body)
-    res.redirect(`/${req.body.id}`);
+    res.status(201).send(await Student.create(req.body))
   } catch (error) {
     next(error.message);
   }
 })
-
 
 // router.put();
 // router.delete();

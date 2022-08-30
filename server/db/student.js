@@ -13,7 +13,7 @@ const Student = db.define('student', {
     email: {
         type: Sequelize.STRING,
         allowNull: false,
-        validation: {
+        validate: {
             isEmail: true,
         },
     },
