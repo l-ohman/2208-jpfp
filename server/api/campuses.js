@@ -1,6 +1,6 @@
 // "/api/campuses"
 const campusRouter = require("express").Router();
-const { Campus } = require("../db");
+const { Campus, Student } = require("../db");
 
 campusRouter.get("/", async (req, res, next) => {
   try {
@@ -13,7 +13,14 @@ campusRouter.get("/", async (req, res, next) => {
 
 campusRouter.get("/:id", async (req, res, next) => {
   try {
-    const campus = await Campus.findByPk(req.params.id);
+    const campus = await Campus.findOne({
+      where: {
+        id: req.params.id,
+      },
+      include: {
+        model: Student,
+      },
+    });
     if (!campus) {
       throw new Error(`Cannot GET /api/campuses/${req.params.id}:
         Not a valid campus ID`);

@@ -5,7 +5,7 @@ const Student = require("./student");
 const Campus = require("./campus");
 
 Student.belongsTo(Campus);
-Campus.hasMany(Student, { foreignKey: "campusId" });
+Campus.hasMany(Student);
 
 const syncAndSeed = async () => {
   await db.sync({ force: true });

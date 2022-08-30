@@ -10,15 +10,18 @@ const SingleCampusView = () => {
   const dispatch = useDispatch();
   const params = useParams();
 
-  const getStudentsByCampus = (campusId) => {
-    return state.students.filter((student) => student.campusId === campusId);
-  };
-  const studentsAtCampus = getStudentsByCampus(state.singleItem.id);
+  // const getStudentsByCampus = (campusId) => {
+  //   return state.students.filter((student) => student.campusId === campusId);
+  // };
+  // const studentsAtCampus = getStudentsByCampus(state.singleItem.id);
 
   React.useEffect(() => {
     dispatch(fetchSingleItem(params.campusId, "campuses"));
   }, []);
 
+  if (state.singleItem.students === undefined) {
+    return (<h2>Loading content</h2>)
+  }
   return (
     <>
       <div>
@@ -31,8 +34,8 @@ const SingleCampusView = () => {
       </div>
       <div>
         <h2>Students at this university:</h2>
-        {studentsAtCampus.length ? (
-          studentsAtCampus.map((student) => (
+        {state.singleItem.students.length ? (
+          state.singleItem.students.map((student) => (
             <SingleStudentListed key={student.id} data={student} />
           ))
         ) : (
