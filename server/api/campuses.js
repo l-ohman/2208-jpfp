@@ -1,17 +1,17 @@
 // "/api/campuses"
-const campusRouter = require("express").Router();
+const router = require("express").Router();
 const { Campus, Student } = require("../db");
 
-campusRouter.get("/", async (req, res, next) => {
+router.get("/", async (req, res, next) => {
   try {
     const allCampuses = await Campus.findAll();
     res.send(allCampuses);
   } catch (error) {
-    next(error);
+    next(error.message);
   }
 });
 
-campusRouter.get("/:id", async (req, res, next) => {
+router.get("/:id", async (req, res, next) => {
   try {
     const campus = await Campus.findOne({
       where: {
@@ -21,14 +21,23 @@ campusRouter.get("/:id", async (req, res, next) => {
         model: Student,
       },
     });
-    if (!campus) {
-      throw new Error(`Cannot GET /api/campuses/${req.params.id}:
-        Not a valid campus ID`);
-    }
+
     res.send(campus);
   } catch (error) {
     next(error.message);
   }
 });
 
-module.exports = campusRouter;
+router.post("/", async (req, res, next) => {
+  try {
+    await Campus.create(req.body)
+    res.redirect(`/${req.body.id}`);
+  } catch (error) {
+    next(error.message);
+  }
+})
+
+// router.put();
+// router.delete();
+
+module.exports = router;

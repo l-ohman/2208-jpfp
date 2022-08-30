@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { SingleCampusListed } from "../"
+import { SingleCampusListed, NewCampusForm } from "../"
 
 const AllCampuses = () => {
     const campuses = useSelector(state => state.campuses);
@@ -10,6 +10,7 @@ const AllCampuses = () => {
             {campuses.map(campus => 
                 <SingleCampusListed key={campus.id} data={campus}/>
             )}
+            <NewCampusForm />
         </div>
     )
 }
