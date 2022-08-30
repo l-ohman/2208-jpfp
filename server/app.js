@@ -10,11 +10,12 @@ app.use(express.static(path.join(__dirname, '..','public')))
 app.use(cors())
 app.use(volleyball)
 
-//this is where some things should go
 app.use('/api', require("./api"));
 
+app.use("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "../public/index.html"));
+})
 
-
+// Need to add error handling
 
 module.exports = app;
-
