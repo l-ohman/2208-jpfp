@@ -11,7 +11,6 @@ const syncAndSeed = async () => {
   await db.sync({ force: true });
 
   try {
-    // dummy data in 'seed.js'
     const { students, campuses } = require("./seed");
 
     await Promise.all(campuses.map((campus) => Campus.create(campus)));
