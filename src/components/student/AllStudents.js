@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import SingleStudent from "./SingleStudentListed";
+import { SingleStudentListed } from "../";
 
 const AllStudents = () => {
     const students = useSelector(state => state.students);
@@ -8,7 +8,7 @@ const AllStudents = () => {
     return(
         <div>
             {students.map(student => 
-                <SingleStudent key={student.id} data={student}/>
+                <SingleStudentListed key={student.id} data={student}/>
             )}
         </div>
     )

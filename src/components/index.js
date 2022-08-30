@@ -1,10 +1,10 @@
 import Navbar from "./Navbar";
-import AllCampuses from "./AllCampuses";
-import AllStudents from "./AllStudents";
-import SingleCampusListed from "./SingleCampusListed";
-import SingleCampusView from "./SingleCampusView";
-import SingleStudentListed from "./SingleStudentListed";
-import SingleStudentView from "./SingleStudentView";
+import AllCampuses from "./campus/AllCampuses";
+import AllStudents from "./student/AllStudents";
+import SingleCampusListed from "./campus/SingleCampusListed";
+import SingleCampusView from "./campus/SingleCampusView";
+import SingleStudentListed from "./student/SingleStudentListed";
+import SingleStudentView from "./student/SingleStudentView";
 
 export {
     Navbar,
