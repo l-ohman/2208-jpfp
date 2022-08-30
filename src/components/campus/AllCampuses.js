@@ -6,12 +6,14 @@ const AllCampuses = () => {
     const campuses = useSelector(state => state.campuses);
 
     return(
-        <div>
+        <>
+        <div className="leftContainer">
             {campuses.map(campus => 
                 <SingleCampusListed key={campus.id} data={campus}/>
             )}
-            <NewCampusForm />
         </div>
+        <NewCampusForm className="rightContainer"/>
+        </>
     )
 }
 
