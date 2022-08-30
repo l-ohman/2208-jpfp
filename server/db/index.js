@@ -5,7 +5,7 @@ const Student = require("./student");
 const Campus = require("./campus");
 
 Student.belongsTo(Campus);
-Campus.hasMany(Student);
+Campus.hasMany(Student, { foreignKey: "campusId" });
 
 const syncAndSeed = async () => {
   await db.sync({ force: true });
@@ -14,8 +14,8 @@ const syncAndSeed = async () => {
     // dummy data in 'seed.js'
     const { students, campuses } = require("./seed");
 
-    await Promise.all(students.map((student) => Student.create(student)));
     await Promise.all(campuses.map((campus) => Campus.create(campus)));
+    await Promise.all(students.map((student) => Student.create(student)));
 
     console.log(`Seeding successful`);
   } catch (error) {

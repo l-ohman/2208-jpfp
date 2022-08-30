@@ -5,20 +5,23 @@ const students = [
     email: "foobar@baz.com",
     imageUrl:
       "https://www.thecompliancecenter.com/wp-content/uploads/cm/l/b/lbbl4dgs_hi_1.gif",
+    campusId: 2,
   },
   {
     firstName: "Jimmy",
     lastName: "John",
     email: "jimmyjohn@gmail.com",
     gpa: 2.5,
+    campusId: 2,
   },
   {
     firstName: "Kenny",
     lastName: "Beats",
     email: "kennybeats@yahoo.com",
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Kenny_Beats_at_Hard_Summer_2019.png/800px-Kenny_Beats_at_Hard_Summer_2019.png",
+    imageUrl:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Kenny_Beats_at_Hard_Summer_2019.png/800px-Kenny_Beats_at_Hard_Summer_2019.png",
     gpa: 4.0,
-  }
+  },
 ];
 
 const campuses = [
@@ -32,10 +35,12 @@ const campuses = [
   },
   {
     name: "Fullstack Academy",
-    imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWhXuA-dhouDY3dzosXT_CQn40OyzPeA4bMlrRhY3-Rg&s",
+    imageUrl:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWhXuA-dhouDY3dzosXT_CQn40OyzPeA4bMlrRhY3-Rg&s",
     address: "5 Hanover Square 11th Floor, New York City, NY",
-    description: "Fullstack makes your dream career possible, no matter your background or skill level. We’re committed to providing a welcoming, diverse and flexible learning environment. Our online part-time and full-time programs give you the flexibility to succeed.",
+    description:
+      "Fullstack makes your dream career possible, no matter your background or skill level. We’re committed to providing a welcoming, diverse and flexible learning environment. Our online part-time and full-time programs give you the flexibility to succeed.",
   },
 ];
 
-module.exports = { students, campuses }
+module.exports = { students, campuses };

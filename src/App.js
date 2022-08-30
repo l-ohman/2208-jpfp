@@ -4,11 +4,7 @@ import { Routes, Route } from "react-router-dom";
 
 import { fetchStudents } from "./store/students";
 import { fetchCampuses } from "./store/campuses";
-import AllCampuses from "./components/AllCampuses";
-import AllStudents from "./components/AllStudents";
-import Navbar from "./components/Navbar";
-import SingleCampusView from "./components/SingleCampusView";
-import SingleStudentView from "./components/SingleStudentView";
+import { Navbar, AllCampuses, AllStudents, SingleCampusView, SingleStudentView } from "./components";
 
 function App() {
   const dispatch = useDispatch();

@@ -2,26 +2,44 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 
+import { SingleStudentListed } from "./";
 import { fetchSingleItem } from "../store/singleItem";
 
 const SingleCampusView = () => {
-  const campus = useSelector((state) => state.singleItem);
+  const state = useSelector((state) => state);
   const dispatch = useDispatch();
   const params = useParams();
+
+  const getStudentsByCampus = (campusId) => {
+    return state.students.filter((student) => student.campusId === campusId);
+  };
+  const studentsAtCampus = getStudentsByCampus(state.singleItem.id);
 
   React.useEffect(() => {
     dispatch(fetchSingleItem(params.campusId, "campuses"));
   }, []);
 
   return (
-    <div>
-      <h1>{campus.name}</h1>
-      <h2>{campus.address}</h2>
-      <p>
-        <i>{campus.description}</i>
-      </p>
-      <img src={campus.imageUrl} />
-    </div>
+    <>
+      <div>
+        <h1>{state.singleItem.name}</h1>
+        <h3>{state.singleItem.address}</h3>
+        <p>
+          <i>{state.singleItem.description}</i>
+        </p>
+        <img src={state.singleItem.imageUrl} />
+      </div>
+      <div>
+        <h2>Students at this university:</h2>
+        {studentsAtCampus.length ? (
+          studentsAtCampus.map((student) => (
+            <SingleStudentListed key={student.id} data={student} />
+          ))
+        ) : (
+          <p>This campus has no students!</p>
+        )}
+      </div>
+    </>
   );
 };
 

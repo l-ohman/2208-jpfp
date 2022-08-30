@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const SingleCampus = ({ data: campus }) => {
+const SingleCampusListed = ({ data: campus }) => {
   return (
     <div>
       <Link to={`/campuses/${campus.id}`}>
@@ -15,4 +15,4 @@ const SingleCampus = ({ data: campus }) => {
   );
 };
 
-export default SingleCampus;
+export default SingleCampusListed;

@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
-const SingleStudent = ({ data: student }) => {
+const SingleStudentListed = ({ data: student }) => {
   return (
     <div>
       <Link to={`/students/${student.id}`}>
@@ -16,4 +17,4 @@ const SingleStudent = ({ data: student }) => {
   );
 };
 
-export default SingleStudent;
+export default SingleStudentListed;

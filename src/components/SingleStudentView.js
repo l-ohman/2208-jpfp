@@ -1,13 +1,18 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 import { fetchSingleItem } from "../store/singleItem";
 
-const SingleCampusView = () => {
-  const student = useSelector((state) => state.singleItem);
+const SingleStudentView = () => {
+  const state = useSelector((state) => state);
   const dispatch = useDispatch();
   const params = useParams();
+
+  const getCampusById = (campusId) => {
+    return state.campuses.find(campus => campus.id === campusId)
+  }
+  const campus = getCampusById(state.singleItem.campusId);
 
   React.useEffect(() => {
     dispatch(fetchSingleItem(params.studentId, "students"));
@@ -16,13 +21,16 @@ const SingleCampusView = () => {
   return (
     <div>
       <h1>
-        {student.firstName} {student.lastName}
+        {state.singleItem.firstName} {state.singleItem.lastName}
       </h1>
-      <p>{student.email}</p>
-      <img src={student.imageUrl} />
-      <p>Current GPA: {student.gpa}</p>
+      <p>{state.singleItem.email}</p>
+      {state.singleItem.campusId ? 
+        <p>{state.singleItem.firstName} is a student at <Link to={`/campuses/${campus.id}`}>{campus.name}</Link></p>
+        : <p>{state.singleItem.firstName} is not currently enrolled at any campus</p>}
+      <img src={state.singleItem.imageUrl} />
+      <p>Current GPA: {state.singleItem.gpa}</p>
     </div>
   );
 };
 
-export default SingleCampusView;
+export default SingleStudentView;
