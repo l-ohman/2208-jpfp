@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams, Link } from "react-router-dom";
 
 import { UnregisterStudent, EditCampusForm } from "../";
-import { fetchSingleItem } from "../../store/singleItem";
+import { fetchSingleItem, updateSingleItem } from "../../store/singleItem";
 
 const SingleCampusView = () => {
   const campus = useSelector((state) => state.singleItem);
@@ -14,6 +14,18 @@ const SingleCampusView = () => {
     dispatch(fetchSingleItem(params.campusId, "campuses"));
   }, []);
 
+
+  // If the campus is updated (confirmed by axios), update the display
+  const campusInList = useSelector((state) =>
+    state.campuses.find((item) => item.id === campus.id)
+  );
+
+  React.useEffect(() => {
+    const updatedSingleCampus = {...campus, ...campusInList};
+    dispatch(updateSingleItem(updatedSingleCampus))
+  }, [campusInList])
+
+  
   if (campus.students === undefined) {
     return <h2>Loading content...</h2>;
   }

@@ -136,14 +136,14 @@ Congrats! You have completed your fourth vertical slice! Make sure to `commit -m
 - [x] Display this component as part of the single-campus view, alongside the single campus
 - Submitting the form with valid data should:
   - [x] Make an AJAX request that causes that campus to be updated in the database
-  - [ ] Update the campus in the current view without needing to refresh the page
-- [ ] In the single-campus view, display an `Unregister` button next to each of its students, which removes the student from the campus (in the database as well as this view); hint: the student is still in the database but is no longer associated with the campus
+  - [x] Update the campus in the current view without needing to refresh the page
+- [x] In the single-campus view, display an `Unregister` button next to each of its students, which removes the student from the campus (in the database as well as this view); hint: the student is still in the database but is no longer associated with the campus
 
 - [x] Write a component to display a form updating _at least_ a student's first and last names, and email
 - [x] Display this component as part of the single-student view, alongside the single student
 - Submitting the form with valid data should:
   - [x] Make an AJAX request that causes that student to be updated in the database
-  - [ ] Update the student in the current view without needing to refresh the page
+  - [x] Update the student in the current view without needing to refresh the page
 
 #### Backend
 

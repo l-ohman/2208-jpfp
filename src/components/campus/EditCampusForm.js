@@ -1,12 +1,10 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-// import { updateCampus } from "../../store/campuses";
-import { updateSingleItem } from "../../store/singleItem";
+import { updateCampus } from "../../store/campuses";
 
 const EditCampusForm = () => {
   const singleItem = useSelector((state) => state.singleItem);
-  const allCampuses = useSelector(state => state.campuses);
   const dispatch = useDispatch();
 
   // function to convert 'singleItem' in global state to form object
@@ -34,14 +32,8 @@ const EditCampusForm = () => {
     event.preventDefault();
 
     const updatedCampus = {...singleItem, ...form};
-
-    dispatch(updateSingleItem(updatedCampus, "campuses"));
+    dispatch(updateCampus(updatedCampus));
   };
-
-  // We don't want to update the state if the server denies the request (such as invalid GPA), so we only dispatch the changes to 'singleItem' if there is a change in the full list (taken care of by 'updateCampus' called in 'handleSubmit')
-  // React.useEffect(() => {
-  //   dispatch(updateSingleItem(form))
-  // }, [allCampuses])
 
   return (
     <div>

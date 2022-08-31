@@ -1,7 +1,8 @@
 import axios from "axios";
 
 const SET_SINGLE_ITEM = "SET_SINGLE_ITEM";
-const UPDATE_SINGLE_ITEM = "UPDATE_SINGLE_ITEM";
+const UPDATE_ITEM = "UPDATE_ITEM";
+const REMOVE_STUDENT_FROM_CAMPUS = "REMOVE_STUDENT_FROM_CAMPUS";
 
 // 'item' can be student or campus
 const setSingleItem = (item) => ({
@@ -9,9 +10,14 @@ const setSingleItem = (item) => ({
   item,
 });
 
-const updateSingleItemAction = (item) => ({
-  type: UPDATE_SINGLE_ITEM,
+export const updateSingleItem = (item) => ({
+  type: UPDATE_ITEM,
   item,
+});
+
+export const removeStudentFromCampus = (studentId) => ({
+  type: REMOVE_STUDENT_FROM_CAMPUS,
+  studentId,
 });
 
 // 'type' being 'students' or 'campuses'
@@ -24,24 +30,17 @@ export const fetchSingleItem = (id, type) => async (dispatch) => {
   }
 };
 
-export const updateSingleItem = (item, pluralType) => async (dispatch) => {
-  try {
-    const { data, status, statusText } = await axios.put(`/api/${pluralType}/${item.id}`, item);
-    if (status !== 200) {
-      throw new Error(statusText);
-    }
-    dispatch(updateSingleItemAction({ ...item, ...data }));
-  } catch (error) {
-    console.error(error);
-  }
-};
-
 const reducer = (state = {}, action) => {
   switch (action.type) {
     case SET_SINGLE_ITEM:
       return action.item;
-    case UPDATE_SINGLE_ITEM:
+    case UPDATE_ITEM:
       return action.item;
+    case REMOVE_STUDENT_FROM_CAMPUS:
+      const studentList = state.students.filter(
+        (student) => student.id !== action.studentId
+      );
+      return { ...state, students: studentList };
     default:
       return state;
   }

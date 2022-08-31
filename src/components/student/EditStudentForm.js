@@ -1,14 +1,13 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { updateSingleItem } from "../../store/singleItem";
+import { updateStudent } from "../../store/students";
 
 const EditStudentForm = () => {
   const singleItem = useSelector((state) => state.singleItem);
-  // const allStudents = useSelector((state) => state.students);
   const dispatch = useDispatch();
 
-  // function to convert 'singleItem' in global state to form object
+  // function to convert 'singleItem' in global state to form object (refactor this)
   const objectToForm = (singleItem) => ({
     id: singleItem.id,
     firstName: singleItem.firstName,
@@ -29,14 +28,13 @@ const EditStudentForm = () => {
 
     setForm(updatedForm);
   };
-  
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     // Copied from NewStudentForm (temporary fix)
     let newStudent = { ...singleItem, ...form };
     delete newStudent.fullName;
-    
     // If it is an empty string, don't set 'gpa' to 0
     if (newStudent.gpa.length === 0) {
       delete newStudent.gpa;
@@ -45,7 +43,7 @@ const EditStudentForm = () => {
       newStudent.gpa = +newStudent.gpa;
     }
 
-    dispatch(updateSingleItem(newStudent, "students"));
+    dispatch(updateStudent(newStudent));
   };
 
   if (!form.firstName) {

@@ -2,8 +2,8 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, Link } from "react-router-dom";
 
-import { fetchSingleItem } from "../../store/singleItem";
 import { EditStudentForm } from "../";
+import { fetchSingleItem, updateSingleItem } from "../../store/singleItem";
 
 const SingleStudentView = () => {
   const student = useSelector((state) => state.singleItem);
@@ -14,6 +14,24 @@ const SingleStudentView = () => {
     dispatch(fetchSingleItem(params.studentId, "students"));
   }, []);
 
+  
+  // If the student is updated (confirmed by axios), update the display
+  const studentInList = useSelector((state) =>
+    state.students.find((item) => item.id === student.id)
+  );
+
+  React.useEffect(() => {
+    // This was causing issues by merging with the previous object if it was a campus
+    if (!student.students) {
+      const updatedSingleStudent = { ...student, ...studentInList };
+      dispatch(updateSingleItem(updatedSingleStudent));
+    }
+  }, [studentInList]);
+
+
+  if (!student.fullName) {
+    return <h2>Loading...</h2>;
+  }
   return (
     <div className="singleItemView">
       <div>
