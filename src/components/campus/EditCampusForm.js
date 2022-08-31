@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { updateCampus } from "../../store/campuses";
+// import { updateCampus } from "../../store/campuses";
 import { updateSingleItem } from "../../store/singleItem";
 
 const EditCampusForm = () => {
@@ -33,13 +33,15 @@ const EditCampusForm = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    dispatch(updateCampus(form));
+    const updatedCampus = {...singleItem, ...form};
+
+    dispatch(updateSingleItem(updatedCampus, "campuses"));
   };
 
   // We don't want to update the state if the server denies the request (such as invalid GPA), so we only dispatch the changes to 'singleItem' if there is a change in the full list (taken care of by 'updateCampus' called in 'handleSubmit')
-  React.useEffect(() => {
-    dispatch(updateSingleItem(form))
-  }, [allCampuses])
+  // React.useEffect(() => {
+  //   dispatch(updateSingleItem(form))
+  // }, [allCampuses])
 
   return (
     <div>

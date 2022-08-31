@@ -1,12 +1,11 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { updateStudent } from "../../store/students";
 import { updateSingleItem } from "../../store/singleItem";
 
 const EditStudentForm = () => {
   const singleItem = useSelector((state) => state.singleItem);
-  const allStudents = useSelector((state) => state.students);
+  // const allStudents = useSelector((state) => state.students);
   const dispatch = useDispatch();
 
   // function to convert 'singleItem' in global state to form object
@@ -30,14 +29,14 @@ const EditStudentForm = () => {
 
     setForm(updatedForm);
   };
-
-  // temporary variable placement
-  let newStudent = { ...form };
+  
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     // Copied from NewStudentForm (temporary fix)
-    newStudent = { ...form };
+    let newStudent = { ...singleItem, ...form };
+    delete newStudent.fullName;
+    
     // If it is an empty string, don't set 'gpa' to 0
     if (newStudent.gpa.length === 0) {
       delete newStudent.gpa;
@@ -46,13 +45,8 @@ const EditStudentForm = () => {
       newStudent.gpa = +newStudent.gpa;
     }
 
-    dispatch(updateStudent(newStudent));
+    dispatch(updateSingleItem(newStudent, "students"));
   };
-
-  // We don't want to update the state if the server denies the request (such as invalid GPA), so we only dispatch the changes to 'singleItem' if there is a change in the full list (taken care of by 'updateCampus' called in 'handleSubmit')
-  React.useEffect(() => {
-    dispatch(updateSingleItem(newStudent));
-  }, [allStudents]);
 
   if (!form.firstName) {
     return <p>Loading form...</p>;

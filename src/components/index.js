@@ -9,6 +9,7 @@ import NewCampusForm from "./campus/NewCampusForm";
 import NewStudentForm from "./student/NewStudentForm";
 import EditCampusForm from "./campus/EditCampusForm";
 import EditStudentForm from "./student/EditStudentForm";
+import UnregisterStudent from "./campus/UnregisterStudent";
 import DeleteItem from "./DeleteItem";
 
 export {
@@ -23,5 +24,6 @@ export {
   NewStudentForm,
   EditCampusForm,
   EditStudentForm,
+  UnregisterStudent,
   DeleteItem,
 };

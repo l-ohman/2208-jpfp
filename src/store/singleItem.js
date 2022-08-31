@@ -9,16 +9,28 @@ const setSingleItem = (item) => ({
   item,
 });
 
-export const updateSingleItem = (item) => ({
+const updateSingleItemAction = (item) => ({
   type: UPDATE_SINGLE_ITEM,
-  item
-})
+  item,
+});
 
 // 'type' being 'students' or 'campuses'
 export const fetchSingleItem = (id, type) => async (dispatch) => {
   try {
     const { data } = await axios.get(`/api/${type}/${id}`);
     dispatch(setSingleItem(data));
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const updateSingleItem = (item, pluralType) => async (dispatch) => {
+  try {
+    const { data, status, statusText } = await axios.put(`/api/${pluralType}/${item.id}`, item);
+    if (status !== 200) {
+      throw new Error(statusText);
+    }
+    dispatch(updateSingleItemAction({ ...item, ...data }));
   } catch (error) {
     console.error(error);
   }

@@ -54,18 +54,6 @@ export const deleteStudent = (studentId) => async (dispatch) => {
   }
 };
 
-export const updateStudent = (student) => async (dispatch) => {
-  try {
-    const response = await axios.put(`/api/students/${student.id}`, student);
-    if (response.status !== 200) {
-      throw new Error(response.statusText);
-    }
-    dispatch(updateStudentAction(response.data));
-  } catch (error) {
-    console.error(error);
-  }
-};
-
 // reducer
 const reducer = (state = [], action) => {
   switch (action.type) {

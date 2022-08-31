@@ -1,13 +1,12 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
-import { SingleStudentListed, EditCampusForm } from "../";
+import { UnregisterStudent, EditCampusForm } from "../";
 import { fetchSingleItem } from "../../store/singleItem";
 
 const SingleCampusView = () => {
-  const state = useSelector((state) => state);
-  const campus = state.singleItem;
+  const campus = useSelector((state) => state.singleItem);
   const dispatch = useDispatch();
   const params = useParams();
 
@@ -16,7 +15,7 @@ const SingleCampusView = () => {
   }, []);
 
   if (campus.students === undefined) {
-    return (<h2>Loading content...</h2>)
+    return <h2>Loading content...</h2>;
   }
   return (
     <div className="singleItemView">
@@ -32,7 +31,12 @@ const SingleCampusView = () => {
         <h2>Students at this university:</h2>
         {campus.students.length ? (
           campus.students.map((student) => (
-            <SingleStudentListed key={student.id} data={student} />
+            <div key={student.id}>
+              <Link to={`/students/${student.id}`}>
+                <p>{student.fullName}</p>
+              </Link>
+              <UnregisterStudent studentId={student.id} />
+            </div>
           ))
         ) : (
           <p>This campus has no students!</p>
