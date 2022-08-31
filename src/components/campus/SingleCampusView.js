@@ -2,11 +2,12 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 
-import { SingleStudentListed } from "../";
+import { SingleStudentListed, EditCampusForm } from "../";
 import { fetchSingleItem } from "../../store/singleItem";
 
 const SingleCampusView = () => {
-  const campus = useSelector((state) => state.singleItem);
+  const state = useSelector((state) => state);
+  const campus = state.singleItem;
   const dispatch = useDispatch();
   const params = useParams();
 
@@ -18,7 +19,7 @@ const SingleCampusView = () => {
     return (<h2>Loading content...</h2>)
   }
   return (
-    <>
+    <div className="singleItemView">
       <div>
         <h1>{campus.name}</h1>
         <h3>{campus.address}</h3>
@@ -37,7 +38,8 @@ const SingleCampusView = () => {
           <p>This campus has no students!</p>
         )}
       </div>
-    </>
+      <EditCampusForm />
+    </div>
   );
 };
 

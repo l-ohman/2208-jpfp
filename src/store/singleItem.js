@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const SET_SINGLE_ITEM = "SET_SINGLE_ITEM";
+const EMPTY_SINGLE_ITEM = "EMPTY_SINGLE_ITEM";
 
 // 'item' can be student or campus
 const setSingleItem = (item) => ({

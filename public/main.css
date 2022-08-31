@@ -85,3 +85,9 @@ form > label > input {
 .deleteBtn:hover {
     background-color: red;
 }
+
+.singleItemView {
+    display: flex;    
+    flex-direction: column;
+    /* align-items: center; */
+}

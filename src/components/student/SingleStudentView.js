@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams, Link } from "react-router-dom";
 
 import { fetchSingleItem } from "../../store/singleItem";
+import { EditStudentForm } from "../";
 
 const SingleStudentView = () => {
   const student = useSelector((state) => state.singleItem);

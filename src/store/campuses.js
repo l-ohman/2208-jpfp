@@ -4,6 +4,7 @@ import axios from "axios";
 const SET_ALL_CAMPUSES = "SET_ALL_CAMPUSES";
 const ADD_NEW_CAMPUS = "ADD_NEW_CAMPUS";
 const DELETE_CAMPUS = "DELETE_CAMPUS";
+const UPDATE_CAMPUS = "UPDATE_CAMPUS";
 
 const setAllCampuses = (allCampuses) => ({
   type: SET_ALL_CAMPUSES,
@@ -18,7 +19,12 @@ const addNewCampus = (newCampus) => ({
 const deleteCampusAction = (campusId) => ({
   type: DELETE_CAMPUS,
   campusId,
-})
+});
+
+const updateCampusAction = (campus) => ({
+  type: UPDATE_CAMPUS,
+  campus,
+});
 
 // thunk(s)
 export const fetchCampuses = () => async (dispatch) => {
@@ -46,7 +52,17 @@ export const deleteCampus = (campusId) => async (dispatch) => {
   } catch (error) {
     console.error(error);
   }
-}
+};
+
+export const updateCampus = (campus) => async (dispatch) => {
+  try {
+    await axios.put(`/api/campuses/${campus.id}`, campus);
+    console.log(`attempting to update campus ${campus.id} with: `, campus);
+    dispatch(updateCampusAction(campus));
+  } catch (error) {
+    console.error(error);
+  }
+};
 
 // reducer
 const reducer = (state = [], action) => {
@@ -56,7 +72,10 @@ const reducer = (state = [], action) => {
     case ADD_NEW_CAMPUS:
       return [...state, action.newCampus];
     case DELETE_CAMPUS:
-      return [...state].filter(item => item.id !== action.campusId);
+      return [...state].filter((item) => item.id !== action.campusId);
+    case UPDATE_CAMPUS:
+      const newState = [...state].filter((item) => item.id !== action.campus.id);
+      return [...newState, action.campus];
     default:
       return state;
   }

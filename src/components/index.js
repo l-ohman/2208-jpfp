@@ -7,6 +7,8 @@ import SingleStudentListed from "./student/SingleStudentListed";
 import SingleStudentView from "./student/SingleStudentView";
 import NewCampusForm from "./campus/NewCampusForm";
 import NewStudentForm from "./student/NewStudentForm";
+import EditCampusForm from "./campus/EditCampusForm";
+import EditStudentForm from "./student/EditStudentForm";
 import DeleteItem from "./DeleteItem";
 
 export {
@@ -19,5 +21,7 @@ export {
   SingleStudentView,
   NewCampusForm,
   NewStudentForm,
+  EditCampusForm,
+  EditStudentForm,
   DeleteItem,
 };
