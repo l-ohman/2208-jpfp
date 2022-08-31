@@ -31,6 +31,7 @@ export const fetchCampuses = () => async (dispatch) => {
   try {
     const { data } = await axios.get("/api/campuses");
     dispatch(setAllCampuses(data));
+    // Need to restructure the store to update this in 'singleItem' view...
   } catch (error) {
     console.error(error);
   }
@@ -56,9 +57,8 @@ export const deleteCampus = (campusId) => async (dispatch) => {
 
 export const updateCampus = (campus) => async (dispatch) => {
   try {
-    await axios.put(`/api/campuses/${campus.id}`, campus);
-    console.log(`attempting to update campus ${campus.id} with: `, campus);
-    dispatch(updateCampusAction(campus));
+    const { data } = await axios.put(`/api/campuses/${campus.id}`, campus);
+    dispatch(updateCampusAction(data));
   } catch (error) {
     console.error(error);
   }

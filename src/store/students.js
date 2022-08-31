@@ -4,6 +4,7 @@ import axios from "axios";
 const SET_ALL_STUDENTS = "SET_ALL_STUDENTS";
 const ADD_NEW_STUDENT = "ADD_NEW_STUDENT";
 const DELETE_STUDENT = "DELETE_STUDENT";
+const UPDATE_STUDENT = "UPDATE_STUDENT";
 
 const setAllStudents = (allStudents) => ({
   type: SET_ALL_STUDENTS,
@@ -18,6 +19,11 @@ const addNewStudent = (newStudent) => ({
 const deleteStudentAction = (studentId) => ({
   type: DELETE_STUDENT,
   studentId,
+});
+
+const updateStudentAction = (student) => ({
+  type: UPDATE_STUDENT,
+  student,
 });
 
 // thunk(s)
@@ -46,7 +52,16 @@ export const deleteStudent = (studentId) => async (dispatch) => {
   } catch (error) {
     console.error(error);
   }
-}
+};
+
+export const updateStudent = (student) => async (dispatch) => {
+  try {
+    const { data } = await axios.put(`/api/students/${student.id}`, student);
+    dispatch(updateStudentAction(data));
+  } catch (error) {
+    console.error(error);
+  }
+};
 
 // reducer
 const reducer = (state = [], action) => {
@@ -56,7 +71,10 @@ const reducer = (state = [], action) => {
     case ADD_NEW_STUDENT:
       return [...state, action.newStudent];
     case DELETE_STUDENT:
-      return [...state].filter(item => item.id !== action.studentId);
+      return [...state].filter((item) => item.id !== action.studentId);
+    case UPDATE_STUDENT:
+      const newState = [...state].filter(item => item.id !== action.student.id);
+      return [...newState, action.student];
     default:
       return state;
   }

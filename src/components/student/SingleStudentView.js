@@ -15,16 +15,26 @@ const SingleStudentView = () => {
   }, []);
 
   return (
-    <div>
-      <h1>
-        {student.firstName} {student.lastName}
-      </h1>
-      <p>{student.email}</p>
-      {student.campusId ? 
-        <p>{student.firstName} is a student at <Link to={`/campuses/${student.campus.id}`}>{student.campus.name}</Link></p>
-        : <p>{student.firstName} is not currently enrolled at any campus</p>}
-      <img src={student.imageUrl} />
-      <p>Current GPA: {student.gpa}</p>
+    <div className="singleItemView">
+      <div>
+        <h1>
+          {student.firstName} {student.lastName}
+        </h1>
+        <p>{student.email}</p>
+        {student.campusId ? (
+          <p>
+            {student.firstName} is a student at{" "}
+            <Link to={`/campuses/${student.campus.id}`}>
+              {student.campus.name}
+            </Link>
+          </p>
+        ) : (
+          <p>{student.firstName} is not currently enrolled at any campus</p>
+        )}
+        <img src={student.imageUrl} />
+        <p>Current GPA: {student.gpa}</p>
+      </div>
+      <EditStudentForm />
     </div>
   );
 };

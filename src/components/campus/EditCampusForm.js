@@ -31,7 +31,6 @@ const EditCampusForm = () => {
     event.preventDefault();
 
     dispatch(updateCampus(form));
-    console.log('updating campus info attempted')
   };
 
   return (
