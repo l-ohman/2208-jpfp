@@ -56,8 +56,11 @@ export const deleteStudent = (studentId) => async (dispatch) => {
 
 export const updateStudent = (student) => async (dispatch) => {
   try {
-    const { data } = await axios.put(`/api/students/${student.id}`, student);
-    dispatch(updateStudentAction(data));
+    const response = await axios.put(`/api/students/${student.id}`, student);
+    if (response.status !== 200) {
+      throw new Error(response.statusText);
+    }
+    dispatch(updateStudentAction(response.data));
   } catch (error) {
     console.error(error);
   }
@@ -73,7 +76,9 @@ const reducer = (state = [], action) => {
     case DELETE_STUDENT:
       return [...state].filter((item) => item.id !== action.studentId);
     case UPDATE_STUDENT:
-      const newState = [...state].filter(item => item.id !== action.student.id);
+      const newState = [...state].filter(
+        (item) => item.id !== action.student.id
+      );
       return [...newState, action.student];
     default:
       return state;

@@ -57,8 +57,11 @@ export const deleteCampus = (campusId) => async (dispatch) => {
 
 export const updateCampus = (campus) => async (dispatch) => {
   try {
-    const { data } = await axios.put(`/api/campuses/${campus.id}`, campus);
-    dispatch(updateCampusAction(data));
+    const response = await axios.put(`/api/campuses/${campus.id}`, campus);
+    if (response.status !== 200) {
+      throw new Error(response.statusText);
+    }
+    dispatch(updateCampusAction(response.data));
   } catch (error) {
     console.error(error);
   }
