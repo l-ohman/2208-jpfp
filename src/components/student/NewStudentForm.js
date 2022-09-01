@@ -1,8 +1,9 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { createStudent } from "../../store/students";
 
 const NewStudentForm = () => {
+  const campuses = useSelector(state => state.campuses);
   const dispatch = useDispatch();
   const emptyForm = {
     firstName: "",
@@ -16,6 +17,8 @@ const NewStudentForm = () => {
     let updatedForm = { ...form };
     const fieldUpdated = event.target.name;
     updatedForm[fieldUpdated] = event.target.value;
+    
+    console.log(updatedForm);
 
     setForm(updatedForm);
   };
@@ -78,6 +81,15 @@ const NewStudentForm = () => {
             type="text"
             onChange={handleChange}
           />
+        </label>
+
+        <label>
+          <select name="campusId" onChange={handleChange}>
+            <option value="">--Select a campus--</option>
+            {campuses.map(campus => 
+              <option key={campus.id} value={campus.id}>{campus.name}</option>
+            )}
+          </select>
         </label>
 
         <button type="submit">Submit New Student</button>

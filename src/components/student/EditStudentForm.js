@@ -2,10 +2,13 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { updateStudent } from "../../store/students";
+import { updateSingleItem } from "../../store/singleItem";
 
 const EditStudentForm = () => {
   const singleItem = useSelector((state) => state.singleItem);
+  const campuses = useSelector(state => state.campuses);
   const dispatch = useDispatch();
+  // ADDS THE CAMPUS ID TO SINGLEITEM STUDENT, BUT NOT THE CAMPUS NAME!
 
   // function to convert 'singleItem' in global state to form object (refactor this)
   const objectToForm = (singleItem) => ({
@@ -14,6 +17,7 @@ const EditStudentForm = () => {
     lastName: singleItem.lastName,
     email: singleItem.email,
     gpa: singleItem.gpa ? singleItem.gpa : "",
+    campusId: singleItem.campusId ? singleItem.campusId : "",
   });
   const [form, setForm] = React.useState(objectToForm(singleItem));
 
@@ -43,7 +47,27 @@ const EditStudentForm = () => {
       newStudent.gpa = +newStudent.gpa;
     }
 
-    dispatch(updateStudent(newStudent));
+    if (newStudent.campusId) {
+      // converting form "number" to real number
+      newStudent.campusId = Number(newStudent.campusId);
+
+      // this is only necessary for updating singleItem view
+      const updatedCampusForStudent = campuses.find(campus => campus.id === newStudent.campusId)
+      newStudent.campus = updatedCampusForStudent
+
+    } else if (newStudent.campusId === "") {
+      newStudent.campusId = null
+      delete newStudent.campus
+    } else {
+      delete newStudent.campusId
+    }
+
+    const wasUpdateSuccessful = await dispatch(updateStudent(newStudent));
+    console.log('wasUpdateSuccessful:', wasUpdateSuccessful)
+    if (wasUpdateSuccessful) {
+      // console.log
+      dispatch(updateSingleItem(newStudent));
+    }
   };
 
   if (!form.firstName) {
@@ -91,6 +115,15 @@ const EditStudentForm = () => {
             type="text"
             onChange={handleChange}
           />
+        </label>
+
+        <label>
+          <select name="campusId" onChange={handleChange} value={form.campusId}>
+            <option value="">--Select a campus--</option>
+            {campuses.map(campus => 
+              <option key={campus.id} value={campus.id} name={campus.name}>{campus.name}</option>
+            )}
+          </select>
         </label>
 
         <button type="submit">Update Student Info</button>

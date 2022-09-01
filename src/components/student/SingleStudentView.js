@@ -7,6 +7,7 @@ import { fetchSingleItem, updateSingleItem } from "../../store/singleItem";
 
 const SingleStudentView = () => {
   const student = useSelector((state) => state.singleItem);
+  const campuses = useSelector(state => state.campuses)
   const dispatch = useDispatch();
   const params = useParams();
 
@@ -16,22 +17,28 @@ const SingleStudentView = () => {
 
   
   // If the student is updated (confirmed by axios), update the display
-  const studentInList = useSelector((state) =>
-    state.students.find((item) => item.id === student.id)
-  );
+  // const studentInList = useSelector((state) =>
+  //   state.students.find((item) => item.id === student.id)
+  // );
 
-  React.useEffect(() => {
-    // This was causing issues by merging with the previous object if it was a campus
-    if (!student.students) {
-      const updatedSingleStudent = { ...student, ...studentInList };
-      dispatch(updateSingleItem(updatedSingleStudent));
-    }
-  }, [studentInList]);
+  // React.useEffect(() => {
+  //   // This 'if' statement fixes the student object merging with the previous object if it was a campus
+  //   if (!student.students) {
+  //     const updatedSingleStudent = { ...student, ...studentInList };
+  //     if (student.campusId) {
+  //       const updatedCampus = campuses.find(campus => campus.id === student.campusId)
+  //       // console.log('updated campus: ', updatedCampus)
+  //       updatedSingleStudent.campus = updatedCampus;
+  //     }
+  //     // console.dir(updatedSingleStudent)
+  //     dispatch(updateSingleItem(updatedSingleStudent));
+  //   }
+  // }, [studentInList]);
 
 
-  if (!student.fullName) {
-    return <h2>Loading...</h2>;
-  }
+  // if (!student.fullName) {
+  //   return <h2>Loading...</h2>;
+  // }
   return (
     <div className="singleItemView">
       <div>
@@ -39,7 +46,7 @@ const SingleStudentView = () => {
           {student.firstName} {student.lastName}
         </h1>
         <p>{student.email}</p>
-        {student.campusId ? (
+        {student.campus ? (
           <p>
             {student.firstName} is a student at{" "}
             <Link to={`/campuses/${student.campus.id}`}>

@@ -61,8 +61,10 @@ export const updateStudent = (student) => async (dispatch) => {
       throw new Error(response.statusText);
     }
     dispatch(updateStudentAction(response.data));
+    return true;
   } catch (error) {
     console.error(error);
+    return false;
   }
 };
 
