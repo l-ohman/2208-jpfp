@@ -1,8 +1,8 @@
-// This is in the 'campus' directory because it is only displayed on campus items
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { updateStudent } from "../../store/students"; // for updating DB
-import { removeStudentFromCampus } from "../../store/singleItem"; // for updating current display
+
+import { updateStudent } from "../../store/students";
+import { removeStudentFromCampus } from "../../store/singleItem";
 
 const UnregisterStudent = ({ studentId }) => {
   const student = useSelector((state) =>
@@ -10,13 +10,13 @@ const UnregisterStudent = ({ studentId }) => {
   );
   const dispatch = useDispatch();
 
-  const handleClick = async  () => {
+  const handleClick = async () => {
     const updatedStudent = { ...student, campusId: null };
-    delete updatedStudent.fullName
+    delete updatedStudent.fullName;
 
     const wasUpdateSuccessful = await dispatch(updateStudent(updatedStudent));
     if (wasUpdateSuccessful) {
-      dispatch(removeStudentFromCampus(student.id))
+      dispatch(removeStudentFromCampus(student.id));
     }
   };
 

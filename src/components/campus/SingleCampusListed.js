@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
 import { DeleteItem } from "../";
 
 const SingleCampusListed = ({ data: campus }) => {

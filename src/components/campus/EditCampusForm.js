@@ -2,37 +2,36 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { updateCampus } from "../../store/campuses";
+import { updateSingleItem } from "../../store/singleItem";
 
 const EditCampusForm = () => {
   const singleItem = useSelector((state) => state.singleItem);
   const dispatch = useDispatch();
 
-  // function to convert 'singleItem' in global state to form object
-  const objectToForm = (singleItem) => ({
-    id: singleItem.id,
-    name: singleItem.name,
-    address: singleItem.address,
-    description: singleItem.description,
-  });
   const [form, setForm] = React.useState(singleItem);
 
   React.useEffect(() => {
-    setForm(objectToForm(singleItem));
+    setForm(singleItem);
   }, [singleItem])
 
   const handleChange = (event) => {
     const updatedForm = {...form};
-    const fieldUpdated = event.target.name;
-    updatedForm[fieldUpdated] = event.target.value;
+    updatedForm[event.target.name] = event.target.value;
 
     setForm(updatedForm);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     const updatedCampus = {...singleItem, ...form};
-    dispatch(updateCampus(updatedCampus));
+    const [wasUpdateSuccessful, returnMsg] = await dispatch(updateCampus(updatedCampus));
+
+    if (wasUpdateSuccessful) {
+      dispatch(updateSingleItem(updatedCampus));
+    } else {
+      alert(returnMsg);
+    }
   };
 
   return (

@@ -1,9 +1,15 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+
 import { SingleStudentListed, NewStudentForm } from "../";
+import { updateSingleItem } from "../../store/singleItem";
 
 const AllStudents = () => {
   const students = useSelector((state) => state.students);
+  const dispatch = useDispatch();
+  
+  // Using 'setTimeout' to prevent an error caused by multiple components rendering at the same time
+  setTimeout(() => dispatch(updateSingleItem({})), 0)
 
   return (
     <>

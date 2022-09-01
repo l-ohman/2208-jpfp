@@ -16,8 +16,7 @@ const NewStudentForm = () => {
 
   const handleChange = (event) => {
     let updatedForm = { ...form };
-    const fieldUpdated = event.target.name;
-    updatedForm[fieldUpdated] = event.target.value;
+    updatedForm[event.target.name] = event.target.value;
     
     console.log(updatedForm);
 

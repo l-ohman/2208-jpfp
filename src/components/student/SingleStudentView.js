@@ -14,6 +14,9 @@ const SingleStudentView = () => {
     dispatch(fetchSingleItem(params.studentId, "students"));
   }, []);
 
+  if (!student.firstName) {
+    return <h2>Loading content...</h2>
+  }
   return (
     <div className="singleStudentView">
       <div className="leftContainer">

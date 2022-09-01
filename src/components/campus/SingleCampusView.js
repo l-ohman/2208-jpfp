@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams, Link } from "react-router-dom";
 
 import { UnregisterStudent, EditCampusForm } from "../";
-import { fetchSingleItem, updateSingleItem } from "../../store/singleItem";
+import { fetchSingleItem } from "../../store/singleItem";
 
 const SingleCampusView = () => {
   const campus = useSelector((state) => state.singleItem);
@@ -13,16 +13,6 @@ const SingleCampusView = () => {
   React.useEffect(() => {
     dispatch(fetchSingleItem(params.campusId, "campuses"));
   }, []);
-
-  // If the campus is updated (confirmed by axios), update the display
-  const campusInList = useSelector((state) =>
-    state.campuses.find((item) => item.id === campus.id)
-  );
-
-  React.useEffect(() => {
-    const updatedSingleCampus = { ...campus, ...campusInList };
-    dispatch(updateSingleItem(updatedSingleCampus));
-  }, [campusInList]);
 
   if (campus.students === undefined) {
     return <h2>Loading content...</h2>;
@@ -53,7 +43,7 @@ const SingleCampusView = () => {
                 <UnregisterStudent studentId={student.id} />
               </div>
             ))
-          ) : ( // I will never understand why Prettier does this
+          ) : (
             <p id="noStudentsAtCampus">This campus has no students!</p>
           )}
         </div>

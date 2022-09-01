@@ -31,7 +31,6 @@ export const fetchCampuses = () => async (dispatch) => {
   try {
     const { data } = await axios.get("/api/campuses");
     dispatch(setAllCampuses(data));
-    // Need to restructure the store to update this in 'singleItem' view...
   } catch (error) {
     console.error(error);
   }
@@ -62,8 +61,10 @@ export const updateCampus = (campus) => async (dispatch) => {
       throw new Error(response.statusText);
     }
     dispatch(updateCampusAction(response.data));
+    return [true, response.statusText];
   } catch (error) {
     console.error(error);
+    return [false, error.message];
   }
 };
 

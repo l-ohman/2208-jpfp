@@ -40,7 +40,6 @@ const EditStudentForm = () => {
         (campus) => campus.id == studentCopy.campusId
       );
       studentCopy.campus = updatedCampusForStudent;
-
     } else if (studentCopy.campusId === "") {
       studentCopy.campusId = null;
       delete studentCopy.campus;
@@ -56,10 +55,8 @@ const EditStudentForm = () => {
 
   React.useEffect(() => {
     setForm(fixObjectForForm(singleItem));
-    console.log(form);
   }, [singleItem]);
 
-  
   const handleChange = (event) => {
     const updatedForm = { ...form };
     updatedForm[event.target.name] = event.target.value;
@@ -70,10 +67,15 @@ const EditStudentForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const student = fixObjectForDatabase(form)
-    const wasUpdateSuccessful = await dispatch(updateStudent(student));
+    const student = fixObjectForDatabase(form);
+    const [wasUpdateSuccessful, responseMsg] = await dispatch(
+      updateStudent(student)
+    );
+
     if (wasUpdateSuccessful) {
       dispatch(updateSingleItem(student));
+    } else {
+      alert(responseMsg);
     }
   };
 

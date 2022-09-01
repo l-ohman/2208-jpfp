@@ -4,23 +4,25 @@ import { createCampus } from "../../store/campuses";
 
 const NewCampusForm = () => {
   const dispatch = useDispatch();
+
   const emptyForm = {
     name: "",
     address: "",
     description: "",
   };
+
   const [form, setForm] = React.useState(emptyForm);
 
   const handleChange = (event) => {
     let updatedForm = { ...form };
-    const fieldUpdated = event.target.name;
-    updatedForm[fieldUpdated] = event.target.value;
+    updatedForm[event.target.name] = event.target.value;
 
     setForm(updatedForm);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    
     dispatch(createCampus(form));
     setForm(emptyForm);
   };
