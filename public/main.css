@@ -60,20 +60,22 @@ form > label > input {
 }
 
 .leftContainer, .rightContainer {
-    width: 42%;
+    width: 70%;
     background-color: rgb(204, 204, 204);
     padding: 8px 14px;
     margin-top: 10px;
     height: fit-content;
 }
 
-.leftContainer > h3 {
+/* .leftContainer > h3 {
+    text-align: center;
+} */
+
+.rightContainer {
+    width: 27%;
+    min-width: 223px;
     text-align: center;
 }
-
-/* .deleteBtnContainer {
-
-} */
 
 .deleteBtn, .unregisterBtn {
     width: 20px;
@@ -91,8 +93,37 @@ form > label > input {
     height: fit-content;
 }
 
-.singleItemView {
+.singleStudentView, .singleCampusView {
+    width: 100%;
     display: flex;    
-    flex-direction: column;
-    /* align-items: center; */
+    justify-content: space-between;
+}
+
+.studentItemCampusPage {
+    margin-bottom:  15px;
+}
+
+.studentListCampusPage {
+    max-width: 800px;
+    margin: auto;
+    display: flex;
+    flex-flow: row wrap;
+    /* justify-content: center; */
+}
+
+.singleStudentCampusPage {
+    width: 350px;
+    height: 1.5em;
+    margin: 3px 15px;
+    padding: 1em 10px;
+    background-color: lightgray;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#noStudentsAtCampus {
+    position: fixed;
+    left: 5%;
+    margin-top: 0;
 }

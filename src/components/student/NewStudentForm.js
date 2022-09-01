@@ -5,6 +5,7 @@ import { createStudent } from "../../store/students";
 const NewStudentForm = () => {
   const campuses = useSelector(state => state.campuses);
   const dispatch = useDispatch();
+
   const emptyForm = {
     firstName: "",
     lastName: "",

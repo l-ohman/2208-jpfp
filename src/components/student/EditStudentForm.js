@@ -6,29 +6,63 @@ import { updateSingleItem } from "../../store/singleItem";
 
 const EditStudentForm = () => {
   const singleItem = useSelector((state) => state.singleItem);
-  const campuses = useSelector(state => state.campuses);
+  const campuses = useSelector((state) => state.campuses);
   const dispatch = useDispatch();
-  // ADDS THE CAMPUS ID TO SINGLEITEM STUDENT, BUT NOT THE CAMPUS NAME!
 
-  // function to convert 'singleItem' in global state to form object (refactor this)
-  const objectToForm = (singleItem) => ({
-    id: singleItem.id,
-    firstName: singleItem.firstName,
-    lastName: singleItem.lastName,
-    email: singleItem.email,
-    gpa: singleItem.gpa ? singleItem.gpa : "",
-    campusId: singleItem.campusId ? singleItem.campusId : "",
-  });
-  const [form, setForm] = React.useState(objectToForm(singleItem));
+  // Fixes numbers and null values for form/database interactions
+  const fixObjectForForm = (student) => {
+    const studentCopy = { ...student };
+
+    studentCopy.gpa = student.gpa ? student.gpa : "";
+    studentCopy.campusId = student.campusId ? student.campusId : "";
+    return studentCopy;
+  };
+
+  const fixObjectForDatabase = (student) => {
+    const studentCopy = { ...student };
+
+    delete studentCopy.fullName; // This cannot be set in the db
+
+    // If it is an empty string, don't set 'gpa' to 0
+    if (studentCopy.gpa === "") {
+      delete studentCopy.gpa;
+    } else {
+      // Convert it to a number and prevent 'NaN' from being sent
+      // studentCopy.gpa = Number(newStudent.gpa);
+      if (isNaN(Number(studentCopy.gpa))) {
+        delete studentCopy.gpa;
+      }
+    }
+
+    if (studentCopy.campusId) {
+      // For updating singleItem view
+      const updatedCampusForStudent = campuses.find(
+        (campus) => campus.id == studentCopy.campusId
+      );
+      studentCopy.campus = updatedCampusForStudent;
+
+    } else if (studentCopy.campusId === "") {
+      studentCopy.campusId = null;
+      delete studentCopy.campus;
+    } else {
+      delete studentCopy.campusId;
+    }
+
+    return studentCopy;
+  };
+
+  // This means that form includes all data from singleItem - not just data that can be changed in the form
+  const [form, setForm] = React.useState(fixObjectForForm(singleItem));
 
   React.useEffect(() => {
-    setForm(objectToForm(singleItem));
+    setForm(fixObjectForForm(singleItem));
+    console.log(form);
   }, [singleItem]);
 
+  
   const handleChange = (event) => {
     const updatedForm = { ...form };
-    const fieldUpdated = event.target.name;
-    updatedForm[fieldUpdated] = event.target.value;
+    updatedForm[event.target.name] = event.target.value;
 
     setForm(updatedForm);
   };
@@ -36,45 +70,19 @@ const EditStudentForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // Copied from NewStudentForm (temporary fix)
-    let newStudent = { ...singleItem, ...form };
-    delete newStudent.fullName;
-    // If it is an empty string, don't set 'gpa' to 0
-    if (newStudent.gpa.length === 0) {
-      delete newStudent.gpa;
-    } else {
-      // Needs a fix - this allows submitting characters for GPA field (but correctly goes into DB as null)
-      newStudent.gpa = +newStudent.gpa;
-    }
-
-    if (newStudent.campusId) {
-      // converting form "number" to real number
-      newStudent.campusId = Number(newStudent.campusId);
-
-      // this is only necessary for updating singleItem view
-      const updatedCampusForStudent = campuses.find(campus => campus.id === newStudent.campusId)
-      newStudent.campus = updatedCampusForStudent
-
-    } else if (newStudent.campusId === "") {
-      newStudent.campusId = null
-      delete newStudent.campus
-    } else {
-      delete newStudent.campusId
-    }
-
-    const wasUpdateSuccessful = await dispatch(updateStudent(newStudent));
-    console.log('wasUpdateSuccessful:', wasUpdateSuccessful)
+    const student = fixObjectForDatabase(form)
+    const wasUpdateSuccessful = await dispatch(updateStudent(student));
     if (wasUpdateSuccessful) {
-      // console.log
-      dispatch(updateSingleItem(newStudent));
+      dispatch(updateSingleItem(student));
     }
   };
 
-  if (!form.firstName) {
+  // Maybe can add a separate property on objects such as "isLoaded"
+  if (!form.firstName && form.firstName !== "") {
     return <p>Loading form...</p>;
   }
   return (
-    <div>
+    <div className="rightContainer">
       <h2>Edit Student</h2>
       <form onSubmit={handleSubmit}>
         <label>
@@ -120,9 +128,11 @@ const EditStudentForm = () => {
         <label>
           <select name="campusId" onChange={handleChange} value={form.campusId}>
             <option value="">--Select a campus--</option>
-            {campuses.map(campus => 
-              <option key={campus.id} value={campus.id} name={campus.name}>{campus.name}</option>
-            )}
+            {campuses.map((campus) => (
+              <option key={campus.id} value={campus.id} name={campus.name}>
+                {campus.name}
+              </option>
+            ))}
           </select>
         </label>
 

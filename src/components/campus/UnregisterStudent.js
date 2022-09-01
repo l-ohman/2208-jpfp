@@ -10,18 +10,14 @@ const UnregisterStudent = ({ studentId }) => {
   );
   const dispatch = useDispatch();
 
-  // if the student is updated (confirmed by axios), update the page display
-  React.useEffect(() => {
-    if (student.campusId === null) {
-      dispatch(removeStudentFromCampus(student.id));
-    }
-  }, [student])
-
-  const handleClick = () => {
-    delete student.fullName; // I officially regret adding this field
+  const handleClick = async  () => {
     const updatedStudent = { ...student, campusId: null };
+    delete updatedStudent.fullName
 
-    dispatch(updateStudent(updatedStudent));
+    const wasUpdateSuccessful = await dispatch(updateStudent(updatedStudent));
+    if (wasUpdateSuccessful) {
+      dispatch(removeStudentFromCampus(student.id))
+    }
   };
 
   return (

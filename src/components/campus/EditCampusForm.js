@@ -36,7 +36,7 @@ const EditCampusForm = () => {
   };
 
   return (
-    <div>
+    <div className="rightContainer">
       <h2> Edit Campus </h2>
       <form onSubmit={handleSubmit}>
         <label>
