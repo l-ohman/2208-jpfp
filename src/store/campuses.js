@@ -38,10 +38,15 @@ export const fetchCampuses = () => async (dispatch) => {
 
 export const createCampus = (newCampus) => async (dispatch) => {
   try {
-    const { data } = await axios.post("/api/campuses", newCampus);
+    const { data, message } = await axios.post("/api/campuses", newCampus);
+    if (!data) {
+      throw new Error(message);
+    }
     dispatch(addNewCampus(data));
+    return [true, "OK"];
   } catch (error) {
     console.error(error);
+    return [false, error.message];
   }
 };
 
@@ -56,12 +61,15 @@ export const deleteCampus = (campusId) => async (dispatch) => {
 
 export const updateCampus = (campus) => async (dispatch) => {
   try {
-    const response = await axios.put(`/api/campuses/${campus.id}`, campus);
-    if (response.status !== 200) {
-      throw new Error(response.statusText);
+    const { data, message } = await axios.put(
+      `/api/campuses/${campus.id}`,
+      campus
+    );
+    if (!data) {
+      throw new Error(message);
     }
-    dispatch(updateCampusAction(response.data));
-    return [true, response.statusText];
+    dispatch(updateCampusAction(data));
+    return [true, "OK"];
   } catch (error) {
     console.error(error);
     return [false, error.message];
@@ -78,7 +86,9 @@ const reducer = (state = [], action) => {
     case DELETE_CAMPUS:
       return [...state].filter((item) => item.id !== action.campusId);
     case UPDATE_CAMPUS:
-      const newState = [...state].filter((item) => item.id !== action.campus.id);
+      const newState = [...state].filter(
+        (item) => item.id !== action.campus.id
+      );
       return [...newState, action.campus];
     default:
       return state;

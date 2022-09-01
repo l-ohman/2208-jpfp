@@ -1,9 +1,11 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
+
 import { createStudent } from "../../store/students";
+import { fixObjectForDatabase } from "../../utils";
 
 const NewStudentForm = () => {
-  const campuses = useSelector(state => state.campuses);
+  const campuses = useSelector((state) => state.campuses);
   const dispatch = useDispatch();
 
   const emptyForm = {
@@ -12,32 +14,29 @@ const NewStudentForm = () => {
     email: "",
     gpa: "",
   };
+
   const [form, setForm] = React.useState(emptyForm);
 
   const handleChange = (event) => {
     let updatedForm = { ...form };
     updatedForm[event.target.name] = event.target.value;
-    
-    console.log(updatedForm);
 
     setForm(updatedForm);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // Necessary to convert 'gpa' to number type before submitting to DB
-    let newStudent = { ...form };
-    // If it is an empty string, don't set 'gpa' to 0
-    if (newStudent.gpa.length === 0) {
-      delete newStudent.gpa;
-    } else {
-      // Needs a fix - this allows submitting characters for GPA field (but correctly goes into DB as null)
-      newStudent.gpa = +newStudent.gpa;
-    }
+    const newStudent = fixObjectForDatabase(form, campuses);
+    const [wasUpdateSuccessful, responseMsg] = await dispatch(
+      createStudent(newStudent)
+    );
 
-    dispatch(createStudent(newStudent));
-    setForm(emptyForm);
+    if (wasUpdateSuccessful) {
+      setForm(emptyForm);
+    } else {
+      alert(responseMsg);
+    }
   };
 
   return (
@@ -86,9 +85,11 @@ const NewStudentForm = () => {
         <label>
           <select name="campusId" onChange={handleChange}>
             <option value="">--Select a campus--</option>
-            {campuses.map(campus => 
-              <option key={campus.id} value={campus.id}>{campus.name}</option>
-            )}
+            {campuses.map((campus) => (
+              <option key={campus.id} value={campus.id}>
+                {campus.name}
+              </option>
+            ))}
           </select>
         </label>
 

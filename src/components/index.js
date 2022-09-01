@@ -1,4 +1,5 @@
 import Navbar from "./Navbar";
+import Footer from "./Footer";
 import AllCampuses from "./campus/AllCampuses";
 import AllStudents from "./student/AllStudents";
 import SingleCampusListed from "./campus/SingleCampusListed";
@@ -15,6 +16,7 @@ import NotFound from "./NotFound";
 
 export {
   Navbar,
+  Footer,
   AllCampuses,
   AllStudents,
   SingleCampusListed,

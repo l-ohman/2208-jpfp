@@ -3,52 +3,12 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { updateStudent } from "../../store/students";
 import { updateSingleItem } from "../../store/singleItem";
+import { fixObjectForForm, fixObjectForDatabase } from "../../utils";
 
 const EditStudentForm = () => {
   const singleItem = useSelector((state) => state.singleItem);
   const campuses = useSelector((state) => state.campuses);
   const dispatch = useDispatch();
-
-  // Fixes numbers and null values for form/database interactions
-  const fixObjectForForm = (student) => {
-    const studentCopy = { ...student };
-
-    studentCopy.gpa = student.gpa ? student.gpa : "";
-    studentCopy.campusId = student.campusId ? student.campusId : "";
-    return studentCopy;
-  };
-
-  const fixObjectForDatabase = (student) => {
-    const studentCopy = { ...student };
-
-    delete studentCopy.fullName; // This cannot be set in the db
-
-    // If it is an empty string, don't set 'gpa' to 0
-    if (studentCopy.gpa === "") {
-      delete studentCopy.gpa;
-    } else {
-      // Convert it to a number and prevent 'NaN' from being sent
-      // studentCopy.gpa = Number(newStudent.gpa);
-      if (isNaN(Number(studentCopy.gpa))) {
-        delete studentCopy.gpa;
-      }
-    }
-
-    if (studentCopy.campusId) {
-      // For updating singleItem view
-      const updatedCampusForStudent = campuses.find(
-        (campus) => campus.id == studentCopy.campusId
-      );
-      studentCopy.campus = updatedCampusForStudent;
-    } else if (studentCopy.campusId === "") {
-      studentCopy.campusId = null;
-      delete studentCopy.campus;
-    } else {
-      delete studentCopy.campusId;
-    }
-
-    return studentCopy;
-  };
 
   // This means that form includes all data from singleItem - not just data that can be changed in the form
   const [form, setForm] = React.useState(fixObjectForForm(singleItem));
@@ -67,7 +27,7 @@ const EditStudentForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const student = fixObjectForDatabase(form);
+    const student = fixObjectForDatabase(form, campuses);
     const [wasUpdateSuccessful, responseMsg] = await dispatch(
       updateStudent(student)
     );

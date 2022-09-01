@@ -1,17 +1,18 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
-import { fetchStudents } from "./store/students";
-import { fetchCampuses } from "./store/campuses";
+import { fetchStudents } from "../store/students";
+import { fetchCampuses } from "../store/campuses";
 import {
   Navbar,
+  Footer,
   AllCampuses,
   AllStudents,
   SingleCampusView,
   SingleStudentView,
-  NotFound
-} from "./components";
+  NotFound,
+} from "./";
 
 function App() {
   const dispatch = useDispatch();
@@ -35,9 +36,10 @@ function App() {
           />
           <Route path={"/campuses"} element={<AllCampuses />} />
           <Route path={"/campuses/:campusId"} element={<SingleCampusView />} />
-          <Route path="*" element={<NotFound />}/>
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
+      <Footer />
     </>
   );
 }

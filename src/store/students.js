@@ -38,10 +38,15 @@ export const fetchStudents = () => async (dispatch) => {
 
 export const createStudent = (newStudent) => async (dispatch) => {
   try {
-    const { data } = await axios.post("/api/students", newStudent);
+    const { data, message } = await axios.post("/api/students", newStudent);
+    if (!data) {
+      throw new Error(message);
+    }
     dispatch(addNewStudent(data));
+    return [true, "OK"];
   } catch (error) {
     console.error(error);
+    return [false, error.message];
   }
 };
 
@@ -56,15 +61,18 @@ export const deleteStudent = (studentId) => async (dispatch) => {
 
 export const updateStudent = (student) => async (dispatch) => {
   try {
-    const response = await axios.put(`/api/students/${student.id}`, student);
-    if (response.status !== 200) {
-      throw new Error(response.statusText);
+    const { data, message } = await axios.put(
+      `/api/students/${student.id}`,
+      student
+    );
+    if (!data) {
+      throw new Error(message);
     }
-    dispatch(updateStudentAction(response.data));
-    return [true, response.statusText]
+    dispatch(updateStudentAction(data));
+    return [true, response.statusText];
   } catch (error) {
     console.error(error);
-    return [false, error.message]
+    return [false, error.message];
   }
 };
 
