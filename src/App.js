@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 import { fetchStudents } from "./store/students";
 import { fetchCampuses } from "./store/campuses";
@@ -10,6 +10,7 @@ import {
   AllStudents,
   SingleCampusView,
   SingleStudentView,
+  NotFound
 } from "./components";
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
           />
           <Route path={"/campuses"} element={<AllCampuses />} />
           <Route path={"/campuses/:campusId"} element={<SingleCampusView />} />
+          <Route path="*" element={<NotFound />}/>
         </Routes>
       </div>
     </>

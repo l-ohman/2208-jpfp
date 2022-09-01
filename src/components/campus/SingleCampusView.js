@@ -2,19 +2,30 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, Link } from "react-router-dom";
 
-import { UnregisterStudent, EditCampusForm } from "../";
+import { UnregisterStudent, EditCampusForm, NotFound } from "../";
 import { fetchSingleItem } from "../../store/singleItem";
 
 const SingleCampusView = () => {
   const campus = useSelector((state) => state.singleItem);
   const dispatch = useDispatch();
-  const params = useParams();
+  const { campusId } = useParams();
+
+  // To track if campus is loading/loaded (true) or does not exist (false)
+  const [campusStatus, setCampusStatus] = React.useState(true);
 
   React.useEffect(() => {
-    dispatch(fetchSingleItem(params.campusId, "campuses"));
+    // Verifies that ID in URL is an integer
+    if (isNaN(Number(campusId))) {
+      setCampusStatus(false);
+    } else {
+      dispatch(fetchSingleItem(campusId, "campuses"));
+    }
   }, []);
 
-  if (campus.students === undefined) {
+  if (!campusStatus || typeof campus !== "object") {
+    return (<NotFound type="campus" />)
+  }
+  else if (campus.students === undefined) {
     return <h2>Loading content...</h2>;
   }
   return (

@@ -24,6 +24,10 @@ export const removeStudentFromCampus = (studentId) => ({
 export const fetchSingleItem = (id, type) => async (dispatch) => {
   try {
     const { data } = await axios.get(`/api/${type}/${id}`);
+    if (!data) {
+      dispatch(setSingleItem(""));
+      throw new Error(`Could not find item with id ${id}`);
+    }
     dispatch(setSingleItem(data));
   } catch (error) {
     console.error(error);

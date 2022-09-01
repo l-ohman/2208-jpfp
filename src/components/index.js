@@ -11,6 +11,7 @@ import EditCampusForm from "./campus/EditCampusForm";
 import EditStudentForm from "./student/EditStudentForm";
 import UnregisterStudent from "./campus/UnregisterStudent";
 import DeleteItem from "./DeleteItem";
+import NotFound from "./NotFound";
 
 export {
   Navbar,
@@ -26,4 +27,5 @@ export {
   EditStudentForm,
   UnregisterStudent,
   DeleteItem,
+  NotFound,
 };
