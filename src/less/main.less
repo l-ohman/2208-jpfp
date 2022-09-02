@@ -1,0 +1,128 @@
+* {
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background-color: white;
+  margin: 0;
+}
+
+img {
+  max-width: 200px;
+  max-height: 250px;
+}
+
+a {
+  color: black;
+  
+  &:hover {
+    color: rgb(79, 79, 79);
+  }
+}
+
+#root {
+  margin: 0;
+}
+
+form {
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  button {
+    margin: 7px auto;
+  }
+
+  label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+
+    input {
+      margin: 4px 0;
+    }
+  }
+}
+
+#navbar {
+  text-align: center;
+  background-color: rgb(161, 161, 161);
+  display: flex;
+  justify-content: space-around;
+}
+
+#main-content {
+  margin: 0% 5%;
+  display: flex;
+  justify-content: space-between;
+  min-width: 600px;
+}
+
+.leftContainer,
+.rightContainer {
+  width: 70%;
+  background-color: rgb(204, 204, 204);
+  padding: 8px 14px;
+  margin-top: 10px;
+  height: fit-content;
+}
+
+.rightContainer {
+  width: 27%;
+  min-width: 223px;
+  text-align: center;
+}
+
+.deleteBtn,
+.unregisterBtn {
+  width: 20px;
+  height: 20px;
+  background-color: darkred;
+  color: white;
+  border: 1px solid white;
+
+  &:hover {
+    background-color: red;
+  }
+}
+
+.unregisterBtn {
+  width: fit-content;
+  height: fit-content;
+}
+
+.singleStudentView,
+.singleCampusView {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.studentItemCampusPage {
+  margin-bottom: 15px;
+}
+
+.studentListCampusPage {
+  max-width: 800px;
+  margin: auto;
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.singleStudentCampusPage {
+  width: 350px;
+  height: 1.5em;
+  margin: 3px 15px;
+  padding: 1em 10px;
+  background-color: lightgray;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#noStudentsAtCampus {
+  margin-top: 0;
+}
