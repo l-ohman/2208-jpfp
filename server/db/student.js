@@ -17,7 +17,6 @@ const Student = db.define("student", {
     },
   },
   fullName: {
-    // for ease of use
     type: Sequelize.VIRTUAL,
     get() {
       return `${this.firstName} ${this.lastName}`;
