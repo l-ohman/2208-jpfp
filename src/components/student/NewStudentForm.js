@@ -27,15 +27,26 @@ const NewStudentForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const newStudent = fixObjectForDatabase(form, campuses);
-    const [wasUpdateSuccessful, responseMsg] = await dispatch(
-      createStudent(newStudent)
-    );
-
-    if (wasUpdateSuccessful) {
-      setForm(emptyForm);
+    if (!form.firstName) {
+      alert('"First name" is a required field');
+    } else if (!form.lastName) {
+      alert('"Last name" is a required field');
+    } else if (!form.email) {
+      alert('"Student email" is a required field');
     } else {
-      alert(responseMsg);
+      const newStudent = fixObjectForDatabase(form, campuses);
+      const [wasUpdateSuccessful, responseMsg] = await dispatch(
+        createStudent(newStudent)
+      );
+
+      if (wasUpdateSuccessful) {
+        alert(
+          `Successfully added "${newStudent.firstName} ${newStudent.lastName}"`
+        );
+        setForm(emptyForm);
+      } else {
+        alert(responseMsg);
+      }
     }
   };
 

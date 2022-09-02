@@ -69,7 +69,7 @@ export const updateStudent = (student) => async (dispatch) => {
       throw new Error(message);
     }
     dispatch(updateStudentAction(data));
-    return [true, response.statusText];
+    return [true, "OK"];
   } catch (error) {
     console.error(error);
     return [false, error.message];

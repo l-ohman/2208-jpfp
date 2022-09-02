@@ -13,9 +13,6 @@ const Campus = db.define("campus", {
   imageUrl: {
     type: Sequelize.STRING,
     defaultValue: "",
-    validate: {
-      isUrl: true,
-    }
   },
   address: {
     type: Sequelize.STRING,

@@ -34,6 +34,7 @@ const EditStudentForm = () => {
 
     if (wasUpdateSuccessful) {
       dispatch(updateSingleItem(student));
+      alert(`Successfully updated "${student.firstName} ${student.lastName}"`)
     } else {
       alert(responseMsg);
     }

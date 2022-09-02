@@ -20,11 +20,16 @@ const NewCampusForm = () => {
     setForm(updatedForm);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     
-    dispatch(createCampus(form));
-    setForm(emptyForm);
+    const [wasUpdateSuccessful, returnMsg] = await dispatch(createCampus(form));
+    if (wasUpdateSuccessful) {
+      alert(`Successfully added "${form.name}"`)
+      setForm(emptyForm);
+    } else {
+      alert(returnMsg);
+    }
   };
 
   return (

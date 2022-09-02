@@ -37,9 +37,6 @@ const Student = db.define("student", {
   imageUrl: {
     type: Sequelize.STRING,
     defaultValue: "",
-    validate: {
-      isUrl: true,
-    }
   },
   gpa: {
     type: Sequelize.DECIMAL,

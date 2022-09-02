@@ -17,7 +17,11 @@ export const fixObjectForDatabase = (student, campuses) => {
   } else {
     // Prevent 'NaN' from being sent
     if (isNaN(Number(studentCopy.gpa))) {
-      delete studentCopy.gpa;
+      alert(`"${studentCopy.gpa}" is not a valid GPA`);
+      throw new Error("Invalid GPA entry");
+    } else if (Number(studentCopy.gpa) > 4) {
+      alert(`GPAs must be between 0 and 4`)
+      throw new Error("Invalid GPA entry");
     }
   }
 

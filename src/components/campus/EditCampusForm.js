@@ -29,6 +29,7 @@ const EditCampusForm = () => {
 
     if (wasUpdateSuccessful) {
       dispatch(updateSingleItem(updatedCampus));
+      alert(`Successfully updated "${updatedCampus.name}"`)
     } else {
       alert(returnMsg);
     }
