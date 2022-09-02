@@ -222,10 +222,10 @@ const createCampuses = (num) => {
   return campuses;
 };
 
-const createStudents = (num) => {
+const createStudents = (num, campusCount) => {
   const students = [];
   while (num > 0) {
-    students.push(createNewStudent());
+    students.push(createNewStudent(campusCount));
     num--;
   }
   return students;
@@ -233,7 +233,7 @@ const createStudents = (num) => {
 
 const createSeedDataSet = (campusCount, studentCount = campusCount * 5) => {
   const campuses = createCampuses(campusCount);
-  const students = createStudents(studentCount);
+  const students = createStudents(studentCount, campusCount);
 
   return [campuses, students];
 };

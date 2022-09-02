@@ -7,6 +7,7 @@ const Student = db.define("student", {
     allowNull: false,
     validate: {
       notEmpty: true,
+      not: /[;_+=*~`'"1234567890{}[\]()]/,
     },
   },
   lastName: {
@@ -14,6 +15,7 @@ const Student = db.define("student", {
     allowNull: false,
     validate: {
       notEmpty: true,
+      not: /[;_+=*~`'"1234567890{}[\]()]/,
     },
   },
   fullName: {
@@ -35,6 +37,9 @@ const Student = db.define("student", {
   imageUrl: {
     type: Sequelize.STRING,
     defaultValue: "",
+    validate: {
+      isUrl: true,
+    }
   },
   gpa: {
     type: Sequelize.DECIMAL,
