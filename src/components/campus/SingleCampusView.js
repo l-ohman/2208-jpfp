@@ -30,7 +30,7 @@ const SingleCampusView = () => {
   }
   return (
     <div className="singleCampusViewContainer">
-      <div className="singleCampusView">
+      <div className="singleItemView">
         <div className="leftContainer">
           <h1>{campus.name}</h1>
           <h3>{campus.address}</h3>

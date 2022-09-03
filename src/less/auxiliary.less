@@ -1,0 +1,50 @@
+// Navbar, footer, buttons, links, etc
+@import "common";
+
+// Navbar and footer //
+#navbar,
+#footer {
+  width: 100%;
+  text-align: center;
+  background-color: @mediumDark;
+  display: flex;
+  justify-content: space-around;
+}
+
+#footer {
+  position: absolute;
+  bottom: 0%;
+  height: @footerHeight;
+  align-items: center;
+  font-style: italic;
+}
+
+// Links //
+a {
+  color: black;
+
+  &:hover {
+    color: @dark;
+  }
+}
+
+// Buttons //
+.deleteBtn,
+.unregisterBtn {
+  background-color: darkred;
+  color: white;
+  border: 1px solid white;
+  &:hover {
+    background-color: red;
+  }
+}
+
+.deleteBtn {
+  width: 20px;
+  height: 20px;
+}
+
+.unregisterBtn {
+  width: fit-content;
+  height: fit-content;
+}

@@ -1,0 +1,31 @@
+// Student lists and items
+@import "common";
+
+@scale: 200px;
+
+.studentGrid {
+  @flexGrid();
+  justify-content: space-evenly;
+  align-items: center;
+
+  padding: 8px 14px;
+  margin: 10px 5px @footerHeight;
+
+  &Item {
+    width: @scale * 1.425;
+    height: @scale * 2;
+    background-color: @medium;
+    margin: 5px 12px 17px;
+    padding: 14px;
+
+    .studentImageContainer {
+      width: @scale;
+      height: @scale;
+      overflow: hidden;
+
+      img {
+        .squareMinMaxHW(@scale, (@scale * 1.5));
+      }
+    }
+  }
+}

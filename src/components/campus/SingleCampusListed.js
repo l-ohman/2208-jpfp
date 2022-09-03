@@ -4,13 +4,16 @@ import { DeleteItem } from "../";
 
 const SingleCampusListed = ({ data: campus }) => {
   return (
-    <div>
-      <Link to={`/campuses/${campus.id}`}>
-        <h2>{campus.name}</h2>
-      </Link>
+    <div className="campusListItem">
+      <h2>
+        <Link to={`/campuses/${campus.id}`}>{campus.name}</Link>
+      </h2>
       <DeleteItem id={campus.id} name={campus.name} type="campus" />
       <p>Located at: {campus.address}</p>
-      <img src={campus.imageUrl ? campus.imageUrl : "/images/noCampusImage.png"} alt="Campus image"/>
+      <img
+        src={campus.imageUrl ? campus.imageUrl : "/images/noCampusImage.png"}
+        alt="Campus image"
+      />
       <hr />
     </div>
   );

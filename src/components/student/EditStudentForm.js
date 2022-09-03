@@ -45,7 +45,7 @@ const EditStudentForm = () => {
     return <p>Loading form...</p>;
   }
   return (
-    <div className="rightContainer">
+    <div className="formContainer">
       <h2>Edit Student</h2>
       <form onSubmit={handleSubmit}>
         <label>

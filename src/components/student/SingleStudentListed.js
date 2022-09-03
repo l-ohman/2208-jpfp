@@ -4,16 +4,20 @@ import { DeleteItem } from "../";
 
 const SingleStudentListed = ({ data: student }) => {
   return (
-    <div>
-      <Link to={`/students/${student.id}`}>
-        <h2>
+    <div className="studentGridItem">
+      <h2>
+        <Link to={`/students/${student.id}`}>
           {student.firstName} {student.lastName}
-        </h2>
-      </Link>
+        </Link>
+      </h2>
       <DeleteItem id={student.id} name={student.fullName} type="student" />
-      <img src={student.imageUrl ? student.imageUrl : "/images/noUserImage.png"} alt="Student image" />
+      <div className="studentImageContainer">
+        <img
+          src={student.imageUrl ? student.imageUrl : "/images/noUserImage.png"}
+          alt="Student image"
+        />
+      </div>
       <p>Contact: {student.email}</p>
-      <p>Current GPA: {student.gpa}</p>
     </div>
   );
 };

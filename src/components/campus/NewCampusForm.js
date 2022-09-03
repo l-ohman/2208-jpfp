@@ -33,7 +33,8 @@ const NewCampusForm = () => {
   };
 
   return (
-    <div className="rightContainer">
+    <div className="formContainer">
+      <h2>Create new campus</h2>
       <form onSubmit={handleSubmit}>
         <label>
           Campus name:

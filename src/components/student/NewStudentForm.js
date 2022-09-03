@@ -51,7 +51,8 @@ const NewStudentForm = () => {
   };
 
   return (
-    <div className="rightContainer">
+    <div className="formContainer">
+      <h2>Create new student</h2>
       <form onSubmit={handleSubmit}>
         <label>
           First name:

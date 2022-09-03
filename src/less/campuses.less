@@ -1,0 +1,43 @@
+// Campus lists and items
+@import "common";
+
+.campusList {
+  background-color: @medium;
+  width: 100%;
+
+  padding: 8px 14px;
+  margin: 23px 15px (@footerHeight + 25px);
+
+  &Item {
+    padding: 0px;
+  }
+}
+
+.singleCampusViewContainer {
+  .studentItemCampusPage {
+    margin-bottom: 15px;
+  }
+
+  .studentListCampusPage {
+    max-width: 800px;
+    margin: auto;
+    display: flex;
+    flex-flow: row wrap;
+    // justify-content: center;
+  }
+
+  .singleStudentCampusPage {
+    width: 350px;
+    height: 1.5em;
+    margin: 3px 15px;
+    padding: 1em 10px;
+    background-color: @medium;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  #noStudentsAtCampus {
+    margin: 0;
+  }
+}

@@ -29,7 +29,7 @@ const SingleStudentView = () => {
     return <h2>Loading content...</h2>
   }
   return (
-    <div className="singleStudentView">
+    <div className="singleItemView">
       <div className="leftContainer">
         <h1>
           {student.firstName} {student.lastName}
