@@ -82,7 +82,7 @@ const reducer = (state = [], action) => {
     case SET_ALL_STUDENTS:
       return action.allStudents;
     case ADD_NEW_STUDENT:
-      return [...state, action.newStudent];
+      return [action.newStudent, ...state];
     case DELETE_STUDENT:
       return [...state].filter((item) => item.id !== action.studentId);
     case UPDATE_STUDENT:

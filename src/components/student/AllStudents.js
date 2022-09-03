@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { SingleStudentListed, NewStudentForm } from "../";
+import { SingleStudentListed, NewStudentForm, StudentForm } from "../";
 import { updateSingleItem } from "../../store/singleItem";
 
 const AllStudents = () => {
@@ -18,7 +18,7 @@ const AllStudents = () => {
           <SingleStudentListed key={student.id} data={student} />
         )) : <h3>No students found!</h3>}
       </div>
-      <NewStudentForm />
+      <StudentForm isEdit={false} />
     </>
   );
 };

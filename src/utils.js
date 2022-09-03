@@ -16,13 +16,7 @@ export const fixObjectForDatabase = (student, campuses) => {
     delete studentCopy.gpa;
   } else {
     // Prevent 'NaN' from being sent
-    if (isNaN(Number(studentCopy.gpa))) {
-      alert(`"${studentCopy.gpa}" is not a valid GPA`);
-      throw new Error("Invalid GPA entry");
-    } else if (Number(studentCopy.gpa) > 4) {
-      alert(`GPAs must be between 0 and 4`)
-      throw new Error("Invalid GPA entry");
-    }
+    
   }
 
   if (studentCopy.campusId) {
@@ -40,3 +34,25 @@ export const fixObjectForDatabase = (student, campuses) => {
 
   return studentCopy;
 };
+
+
+// Checks validity of form *before* sending to server
+export const studentFormValidityCheck = (form) => {
+  const validNameRegex = /[/\\;_+=*~`'"\d{}[\]()]/
+
+  if (!form.firstName) {
+    return '"First name" is a required field';
+  } else if (!form.lastName) {
+    return '"Last name" is a required field';
+  } else if (form.firstName.match(validNameRegex) || form.lastName.match(validNameRegex)) {
+    return "Names cannot include symbols or numbers";
+  } else if (!form.email) {
+    return '"Student email" is a required field';
+  } else if (form.gpa !== "" && isNaN(Number(form.gpa))) {
+    return `"${form.gpa}" is not a valid GPA`;
+  } else if (Number(form.gpa) > 4 || Number(form.gpa) < 0) {
+    return "GPAs must be between 0 and 4"
+  } else {
+    return false; // false == a valid form
+  }
+}

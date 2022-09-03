@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, Link } from "react-router-dom";
 
-import { EditStudentForm, NotFound } from "../";
+import { EditStudentForm, NotFound, StudentForm } from "../";
 import { fetchSingleItem } from "../../store/singleItem";
 
 const SingleStudentView = () => {
@@ -46,9 +46,9 @@ const SingleStudentView = () => {
           <p>{student.firstName} is not currently enrolled at any campus</p>
         )}
         <img src={student.imageUrl ? student.imageUrl : "/images/noUserImage.png"} alt="Student image" />
-        <p>Current GPA: {student.gpa}</p>
+        <p>Current GPA: {(+student.gpa).toPrecision(2)}</p>
       </div>
-      <EditStudentForm />
+      <StudentForm isEdit={true} />
     </div>
   );
 };
