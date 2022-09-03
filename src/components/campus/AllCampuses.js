@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { SingleCampusListed, NewCampusForm } from "../";
+import { SingleCampusListed, CampusForm } from "../";
 import { updateSingleItem } from "../../store/singleItem";
 
 const AllCampuses = () => {
@@ -18,7 +18,7 @@ const AllCampuses = () => {
           <SingleCampusListed key={campus.id} data={campus} />
         )) : <h3>No campuses found!</h3>}
       </div>
-      <NewCampusForm />
+      <CampusForm isEdit={false} />
     </>
   );
 };

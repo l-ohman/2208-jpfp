@@ -1,14 +1,17 @@
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+
 import AllCampuses from "./campus/AllCampuses";
 import AllStudents from "./student/AllStudents";
+
 import SingleCampusListed from "./campus/SingleCampusListed";
 import SingleCampusView from "./campus/SingleCampusView";
 import SingleStudentListed from "./student/SingleStudentListed";
 import SingleStudentView from "./student/SingleStudentView";
-import NewCampusForm from "./campus/NewCampusForm";
-import EditCampusForm from "./campus/EditCampusForm";
+
+import CampusForm from "./campus/CampusForm";
 import StudentForm from "./student/StudentForm"
+
 import UnregisterStudent from "./campus/UnregisterStudent";
 import DeleteItem from "./DeleteItem";
 import NotFound from "./NotFound";
@@ -22,8 +25,7 @@ export {
   SingleCampusView,
   SingleStudentListed,
   SingleStudentView,
-  NewCampusForm,
-  EditCampusForm,
+  CampusForm,
   StudentForm,
   UnregisterStudent,
   DeleteItem,

@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, Link } from "react-router-dom";
 
-import { UnregisterStudent, EditCampusForm, NotFound } from "../";
+import { UnregisterStudent, CampusForm, NotFound } from "../";
 import { fetchSingleItem } from "../../store/singleItem";
 
 const SingleCampusView = () => {
@@ -39,7 +39,7 @@ const SingleCampusView = () => {
           </p>
           <img src={campus.imageUrl ? campus.imageUrl : "/images/noCampusImage.png"} alt="Campus image"/>
         </div>
-        <EditCampusForm />
+        <CampusForm isEdit={true} />
       </div>
       <hr />
       <div className="studentItemCampusPage">

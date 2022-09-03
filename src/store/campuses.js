@@ -82,7 +82,7 @@ const reducer = (state = [], action) => {
     case SET_ALL_CAMPUSES:
       return action.allCampuses;
     case ADD_NEW_CAMPUS:
-      return [...state, action.newCampus];
+      return [action.newCampus, ...state];
     case DELETE_CAMPUS:
       return [...state].filter((item) => item.id !== action.campusId);
     case UPDATE_CAMPUS:
