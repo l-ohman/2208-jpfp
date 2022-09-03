@@ -21,8 +21,6 @@ const fixCase = (string) => {
   return arr.join(" ");
 };
 
-// --- CAMPUS CREATION --- //
-
 const randomInteger = (digitCount) => {
   // If 'digitCount' is 0 or undefined, select digit number randomly
   if (!digitCount) {
@@ -42,6 +40,22 @@ const randomInteger = (digitCount) => {
   }
   return output.join("");
 };
+
+// Get a few images
+const getSomeImageUrls = (imgCount, xResolution = 300, yResolution = 300) => {
+  let ids = randomInteger(imgCount).split("").map(x => Math.floor(Number(x) * (Math.random()) * 10));
+  const makeUrl = (id) => `https://picsum.photos/id/${id}/${xResolution}/${yResolution}`
+  
+  return ids.reduce((arr, id) => {
+    arr.push(makeUrl(id));
+    return arr;
+  }, [])
+}
+// Maybe should somewhat randomize the resolution as well...
+let studentImages = getSomeImageUrls(10)
+let campusImages = getSomeImageUrls(5, 1500, 900)
+
+// --- CAMPUS CREATION --- //
 
 // num1 determines method to use, num2 determines item within method
 const getStreetCityBase = (num1, num2) => {
@@ -126,11 +140,17 @@ const createNewCampus = () => {
     campusName = fixCase(createCampusName());
   }
 
+  // 80% chance a university has a random image
+  let imageUrl;
+  if (Math.random() < 0.8) {
+    imageUrl = campusImages[Math.floor(Math.random() * campusImages.length)];
+  }
+
   return {
     name: campusName,
     address: campusAddress,
     description: descriptions[Math.floor(descriptions.length * Math.random())],
-    // imageUrl: campusImageAddresses[0], // placeholder
+    imageUrl
   };
 };
 
@@ -201,13 +221,19 @@ const createNewStudent = (campusCount = 1) => {
     campusId = Math.ceil(Math.random() * campusCount);
   }
 
+  // 40% chance a student has a random image as 'imageUrl'
+  let imageUrl;
+  if (Math.random() < 0.4) {
+    imageUrl = studentImages[Math.floor(Math.random() * studentImages.length)];
+  }
+
   return {
     firstName,
     lastName,
     email,
     gpa,
     campusId,
-    // imageUrl: studentImageAddresses[0], // placeholder
+    imageUrl,
   };
 };
 
