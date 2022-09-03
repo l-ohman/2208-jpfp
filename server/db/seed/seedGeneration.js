@@ -5,11 +5,9 @@ const {
   streetSuffixes,
   descriptions,
   campusSuffixes,
-  campusImageAddresses,
   lastNames,
   firstNames,
   emailSuffixes,
-  studentImageAddresses,
   alphabet,
 } = require("./seedData");
 

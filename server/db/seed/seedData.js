@@ -20,4 +20,4 @@ const firstNames = ["FOO","BAR","BAZ","JAMES","JOHN","ROBERT","MICHAEL","WILLIAM
 const emailSuffixes = ["@gmail.com","@yahoo.com","@aol.com"]
 const alphabet = "QWERTYUIOPASDFGHJKLZXCVBNM";
 
-module.exports = {streetCityNames, citySuffixes, streetSuffixes, descriptions, campusSuffixes, campusImageAddresses, lastNames, firstNames, emailSuffixes, studentImageAddresses, alphabet};
+module.exports = {streetCityNames, citySuffixes, streetSuffixes, descriptions, campusSuffixes, lastNames, firstNames, emailSuffixes, alphabet};
