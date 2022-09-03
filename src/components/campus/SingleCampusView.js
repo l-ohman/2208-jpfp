@@ -37,7 +37,7 @@ const SingleCampusView = () => {
           <p>
             <i>{campus.description}</i>
           </p>
-          <img src={campus.imageUrl} />
+          <img src={campus.imageUrl ? campus.imageUrl : "/images/noCampusImage.png"} alt="Campus image"/>
         </div>
         <EditCampusForm />
       </div>

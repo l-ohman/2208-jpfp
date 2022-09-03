@@ -45,7 +45,7 @@ const SingleStudentView = () => {
         ) : (
           <p>{student.firstName} is not currently enrolled at any campus</p>
         )}
-        <img src={student.imageUrl} />
+        <img src={student.imageUrl ? student.imageUrl : "/images/noUserImage.png"} alt="Student image" />
         <p>Current GPA: {student.gpa}</p>
       </div>
       <EditStudentForm />

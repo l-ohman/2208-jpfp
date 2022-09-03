@@ -10,7 +10,7 @@ const SingleCampusListed = ({ data: campus }) => {
       </Link>
       <DeleteItem id={campus.id} name={campus.name} type="campus" />
       <p>Located at: {campus.address}</p>
-      <img src={campus.imageUrl} />
+      <img src={campus.imageUrl ? campus.imageUrl : "/images/noCampusImage.png"} alt="Campus image"/>
       <hr />
     </div>
   );

@@ -130,7 +130,7 @@ const createNewCampus = () => {
     name: campusName,
     address: campusAddress,
     description: descriptions[Math.floor(descriptions.length * Math.random())],
-    imageUrl: campusImageAddresses[0], // placeholder
+    // imageUrl: campusImageAddresses[0], // placeholder
   };
 };
 
@@ -207,7 +207,7 @@ const createNewStudent = (campusCount = 1) => {
     email,
     gpa,
     campusId,
-    imageUrl: studentImageAddresses[0], // placeholder
+    // imageUrl: studentImageAddresses[0], // placeholder
   };
 };
 

@@ -11,7 +11,7 @@ const SingleStudentListed = ({ data: student }) => {
         </h2>
       </Link>
       <DeleteItem id={student.id} name={student.fullName} type="student" />
-      <img src={student.imageUrl} />
+      <img src={student.imageUrl ? student.imageUrl : "/images/noUserImage.png"} alt="Student image" />
       <p>Contact: {student.email}</p>
       <p>Current GPA: {student.gpa}</p>
     </div>
