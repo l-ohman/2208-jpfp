@@ -45,7 +45,7 @@ const CampusForm = ({ isEdit }) => {
       return;
     }
 
-    const [wasUpdateSuccessful, returnMsg] = await dispatch(
+    const wasUpdateSuccessful = await dispatch(
       isEdit ? updateCampus(form) : createCampus(form)
     );
 

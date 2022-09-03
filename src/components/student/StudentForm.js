@@ -53,7 +53,7 @@ const StudentForm = ({ isEdit }) => {
     }
 
     const student = fixObjectForDatabase(form, campuses);
-    const [wasUpdateSuccessful, responseMsg] = await dispatch(
+    const wasUpdateSuccessful = await dispatch(
       isEdit ? updateStudent(student) : createStudent(student)
     );
 

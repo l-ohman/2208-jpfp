@@ -43,16 +43,17 @@ export const createCampus = (newCampus) => async (dispatch) => {
       throw new Error(message);
     }
     dispatch(addNewCampus(data));
-    return [true, "OK"];
+    return true;
   } catch (error) {
     console.error(error);
-    return [false, error.message];
+    return false;
   }
 };
 
 export const deleteCampus = (campusId) => async (dispatch) => {
   try {
     await axios.delete(`/api/campuses/${campusId}`);
+    // Maybe should wait for server response before updating store...
     dispatch(deleteCampusAction(campusId));
   } catch (error) {
     console.error(error);
@@ -69,10 +70,10 @@ export const updateCampus = (campus) => async (dispatch) => {
       throw new Error(message);
     }
     dispatch(updateCampusAction(data));
-    return [true, "OK"];
+    return true;
   } catch (error) {
     console.error(error);
-    return [false, error.message];
+    return false;
   }
 };
 

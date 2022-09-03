@@ -43,10 +43,10 @@ export const createStudent = (newStudent) => async (dispatch) => {
       throw new Error(message);
     }
     dispatch(addNewStudent(data));
-    return [true, "OK"];
+    return true;
   } catch (error) {
     console.error(error);
-    return [false, error.message];
+    return false;
   }
 };
 
@@ -69,10 +69,10 @@ export const updateStudent = (student) => async (dispatch) => {
       throw new Error(message);
     }
     dispatch(updateStudentAction(data));
-    return [true, "OK"];
+    return true;
   } catch (error) {
     console.error(error);
-    return [false, error.message];
+    return false;
   }
 };
 
