@@ -23,27 +23,35 @@ const SingleCampusView = () => {
   }, []);
 
   if (!campusStatus || typeof campus !== "object") {
-    return (<NotFound type="campus" />)
-  }
-  else if (campus.students === undefined) {
+    return <NotFound type="campus" />;
+  } else if (campus.students === undefined) {
     return <h2>Loading content...</h2>;
   }
   return (
     <div className="singleCampusViewContainer">
       <div className="singleItemView">
-        <div className="leftContainer">
+        <div className="leftContainer singleCampusView">
           <h1>{campus.name}</h1>
           <h3>{campus.address}</h3>
           <p>
             <i>{campus.description}</i>
           </p>
-          <img src={campus.imageUrl ? campus.imageUrl : "/images/noCampusImage.png"} alt="Campus image"/>
+
+          <div className="imgContainer">
+            {campus.imageUrl ? (
+              <img src={campus.imageUrl} alt="Campus image" />
+            ) : (
+              ""
+            )}
+          </div>
         </div>
         <CampusForm isEdit={true} />
       </div>
+
       <hr />
+
       <div className="studentItemCampusPage">
-        <h2>Students at this university:</h2>
+        <h2>Students at this university {campus.students.length ? `(${campus.students.length})` : `(0)`}:</h2>
         <div className="studentListCampusPage">
           {campus.students.length ? (
             campus.students.map((student) => (

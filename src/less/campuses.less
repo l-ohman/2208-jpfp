@@ -1,55 +1,107 @@
 // Campus lists and items
 @import "common";
 
+@scale: 215px;
+
 .campusList {
-  background-color: @medium;
   width: 100%;
 
-  padding: 8px 14px;
+  padding: 0 14px 8px;
   margin: 23px 15px (@footerHeight + 25px);
 
+  @contPadding: 25px;
+
   &Item {
-    padding: 0px;
-  }
+    // min-height: @scale*0.9;
+    // max-height: 100%;
+    min-width: 500px;
 
-  img {
-    max-height: 450px;
-    max-width: 100%;
-    overflow: hidden;
-  }
+    background-color: @medium;
+    padding: 18px 20px;
+    margin-bottom: 20px;
 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &Left {
+      height: 100%;
+      // background-color: yellow;
+
+      h2,
+      p {
+        margin: 0 3px 12px;
+      }
+      p {
+        margin-bottom: 20px;
+      }
+    }
+
+    img {
+      .maxHW(@scale*0.9, 300px);
+      // float: right;
+    }
+
+    .deleteBtn {
+      position: relative;
+      bottom: 0;
+    }
+  }
 }
 
 .singleCampusViewContainer {
-  img {
-    max-width: 100%;
+  h1, .formContainer {
+    margin-top: 0;
+  }
+  .formContainer {
+    position: relative;
+    top: 23px;
   }
 
+  .singleCampusView {
+    background-color: @medium;
+
+    padding: 20px;
+
+    .imgContainer {
+      display: flex;
+      justify-content: center;
+
+      img {
+        .maxHW(600px, 700px);
+        overflow: hidden;
+      }
+    }
+  }
 
   .studentItemCampusPage {
     margin-bottom: 15px;
-  }
+    h2 {
+      margin-left: 27px;
+    }
 
-  .studentListCampusPage {
-    max-width: 800px;
-    margin: auto;
-    display: flex;
-    flex-flow: row wrap;
-    // justify-content: center;
-  }
+    .studentListCampusPage {
+      max-width: 800px;
+      margin: auto;
+      margin-bottom: @footerHeight + 15px;
+      display: flex;
+      flex-flow: row wrap;
+      // justify-content: center;
 
-  .singleStudentCampusPage {
-    width: 350px;
-    height: 1.5em;
-    margin: 3px 15px;
-    padding: 1em 10px;
-    background-color: @medium;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
+      .singleStudentCampusPage {
+        width: 350px;
+        height: 1.5em;
+        margin: 3px 15px;
+        padding: 1em 10px;
+        background-color: @medium;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
 
-  #noStudentsAtCampus {
-    margin: 0;
+      #noStudentsAtCampus {
+        margin: 0;
+      }
+    }
   }
 }

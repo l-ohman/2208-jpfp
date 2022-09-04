@@ -64,51 +64,53 @@ const CampusForm = ({ isEdit }) => {
   };
 
   return (
-    <div className="formContainer">
-      <h2>{isEdit ? "Edit " : "Create New "} Campus</h2>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Campus name:
-          <input
-            name="name"
-            value={form.name}
-            type="text"
-            onChange={handleChange}
-          />
-        </label>
+    <div className="rightContainer">
+      <div className="formContainer">
+        <h2>{isEdit ? "Edit " : "Create New "} Campus</h2>
+        <form onSubmit={handleSubmit}>
+          <label>
+            Campus name:
+            <input
+              name="name"
+              value={form.name}
+              type="text"
+              onChange={handleChange}
+            />
+          </label>
 
-        <label>
-          Campus address:
-          <input
-            name="address"
-            value={form.address}
-            type="text"
-            onChange={handleChange}
-          />
-        </label>
+          <label>
+            Campus address:
+            <input
+              name="address"
+              value={form.address}
+              type="text"
+              onChange={handleChange}
+            />
+          </label>
 
-        <label>
-          Description:
-          <input
-            name="description"
-            value={form.description}
-            type="text"
-            onChange={handleChange}
-          />
-        </label>
+          <label>
+            Description:
+            <input
+              name="description"
+              value={form.description}
+              type="text"
+              onChange={handleChange}
+            />
+          </label>
 
-        <label>
-          Campus image (URL):
-          <input
-            name="imageUrl"
-            value={form.imageUrl}
-            type="text"
-            onChange={handleChange}
-          />
-        </label>
+          <label>
+            Campus image (URL):
+            <input
+              name="imageUrl"
+              value={form.imageUrl}
+              type="text"
+              onChange={handleChange}
+            />
+          </label>
 
-        <button type="submit">Update Campus Info</button>
-      </form>
+          <button type="submit">Update Campus Info</button>
+        </form>
+      </div>
     </div>
   );
 };
