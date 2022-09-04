@@ -18,10 +18,22 @@ body {
     margin: 0;
 
     #main-content {
-      margin: 0 40px;
+      margin: auto;
       display: flex;
       justify-content: space-between;
       min-width: 600px;
+
+      .leftContainer {
+        width: 100%;
+        height: fit-content;
+        margin: 23px 26px;
+
+        background-color: @medium;
+      }
+
+      .rightContainer {
+        padding-right: 26px;
+      }
     }
   }
 }
@@ -62,6 +74,11 @@ body {
 
 .singleItemView {
   width: 100%;
+  height: fit-content;
   display: flex;
   justify-content: space-between;
+}
+
+.centerText {
+  text-align: center;
 }

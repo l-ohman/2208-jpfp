@@ -76,74 +76,80 @@ const StudentForm = ({ isEdit }) => {
   };
 
   return (
-    <div className="formContainer">
-      <h2>{isEdit ? "Edit " : "Create New "} Student</h2>
-      <form onSubmit={handleSubmit}>
-        <label>
-          First name:
-          <input
-            name="firstName"
-            value={form.firstName}
-            type="text"
-            onChange={handleChange}
-          />
-        </label>
+    <div className="rightContainer">
+      <div className="formContainer">
+        <h2>{isEdit ? "Edit " : "Create New "} Student</h2>
+        <form onSubmit={handleSubmit}>
+          <label>
+            First name:
+            <input
+              name="firstName"
+              value={form.firstName}
+              type="text"
+              onChange={handleChange}
+            />
+          </label>
 
-        <label>
-          Last name:
-          <input
-            name="lastName"
-            value={form.lastName}
-            type="text"
-            onChange={handleChange}
-          />
-        </label>
+          <label>
+            Last name:
+            <input
+              name="lastName"
+              value={form.lastName}
+              type="text"
+              onChange={handleChange}
+            />
+          </label>
 
-        <label>
-          Student email:
-          <input
-            name="email"
-            value={form.email}
-            type="text"
-            onChange={handleChange}
-          />
-        </label>
+          <label>
+            Student email:
+            <input
+              name="email"
+              value={form.email}
+              type="text"
+              onChange={handleChange}
+            />
+          </label>
 
-        <label>
-          Student GPA:
-          <input
-            name="gpa"
-            value={form.gpa}
-            type="text"
-            onChange={handleChange}
-          />
-        </label>
+          <label>
+            Student GPA:
+            <input
+              name="gpa"
+              value={form.gpa}
+              type="text"
+              onChange={handleChange}
+            />
+          </label>
 
-        <label>
-          Student image (URL):
-          <input
-            name="imageUrl"
-            value={form.imageUrl}
-            type="text"
-            onChange={handleChange}
-          />
-        </label>
+          <label>
+            Student image (URL):
+            <input
+              name="imageUrl"
+              value={form.imageUrl}
+              type="text"
+              onChange={handleChange}
+            />
+          </label>
 
-        <label>
-          <select name="campusId" onChange={handleChange} value={form.campusId}>
-            <option value="">--Select a campus--</option>
-            {campuses.map((campus) => (
-              <option key={campus.id} value={campus.id}>
-                {campus.name}
-              </option>
-            ))}
-          </select>
-        </label>
+          <label>
+            <select
+              name="campusId"
+              onChange={handleChange}
+              value={form.campusId}
+            >
+              <option value="">--Select a campus--</option>
+              {campuses.map((campus) => (
+                <option key={campus.id} value={campus.id}>
+                  {campus.name}
+                </option>
+              ))}
+            </select>
+          </label>
 
-        <button type="submit">
-          {isEdit ? "Update " : "Submit New "} Student
-        </button>
-      </form>
+          <button type="submit">
+            {isEdit ? "Update " : "Submit New "} Student
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

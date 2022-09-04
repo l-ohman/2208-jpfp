@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { deleteCampus } from "../store/campuses";
 import { deleteStudent } from "../store/students";
+import { capitalizeFirstLetter } from "../utils"
 
 const DeleteItem = ({ id, name, type }) => {
   const dispatch = useDispatch();
@@ -17,11 +18,11 @@ const DeleteItem = ({ id, name, type }) => {
   };
 
   return (
-    <div className="deleteBtnContainer">
+    // <div className="deleteBtnContainer">
       <button onClick={handleDelete} className="deleteBtn">
-        x
+        Delete {` ${capitalizeFirstLetter(type)}`}
       </button>
-    </div>
+    // </div>
   );
 };
 

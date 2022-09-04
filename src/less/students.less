@@ -2,30 +2,99 @@
 @import "common";
 
 @scale: 200px;
+@imgScale: 40px;
 
 .studentGrid {
-  @flexGrid();
-  justify-content: space-evenly;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(@scale * 1.6, 1fr));
+  justify-items: center;
 
+  width: 100%;
   padding: 8px 14px;
   margin: 10px 5px @footerHeight;
 
   &Item {
-    width: @scale * 1.425;
-    height: @scale * 2;
+    * {
+      margin: 0;
+    }
+    @itemPadding: 8px;
+
+    width: 90%;
+    max-width: 400px;
+    height: @scale * 1.07;
+
     background-color: @medium;
     margin: 5px 12px 17px;
-    padding: 14px;
+    overflow: hidden;
 
-    .studentImageContainer {
-      width: @scale;
-      height: @scale;
-      overflow: hidden;
+    display: flex;
+    flex-direction: column;
 
-      img {
-        .squareMinMaxHW(@scale, (@scale * 1.5));
+    &Header {
+      height: @imgScale * 1.5 + @itemPadding * 2;
+      
+      display: flex;
+      // justify-content: center;
+      align-items: center;
+
+      background-color: @mediumDark;
+      padding: @itemPadding * 1.5;
+
+      h2 {
+        width: fit-content;
+        margin: 13px;
       }
+      img {
+        float: left;
+        border-radius: 50%;
+        .squareMinMaxHW(@imgScale, @imgScale);
+      }
+    }
+
+    &Info {
+      padding-top: 6px;
+      p {
+        padding: @itemPadding @itemPadding 0 @itemPadding;
+        // padding: @itemPadding;
+      }
+      overflow-wrap: break-word;
+    }
+
+    .deleteBtn {
+      margin: auto;
+      margin-bottom: 12px;
+    }
+  }
+}
+
+.singleStudentView {
+  @imageWrapMargin: 13px;
+  @contPadding: 25px;
+
+  * {
+    margin: 0;
+  }
+
+  padding: @contPadding;
+  padding-bottom: @imageWrapMargin;
+
+  img {
+    .maxHW(375px, 500px);
+    // .minHW(150px, 150px);
+    float: right;
+    margin: 0 0 @imageWrapMargin @imageWrapMargin;
+  }
+
+  &Info {
+    * {
+      margin-bottom: @contPadding - @imageWrapMargin;
+    }
+    h1 {
+      margin-bottom: 15px;
+    }
+    p {
+      // margin-top: 4px;
+      font-size: 1.1em;
     }
   }
 }

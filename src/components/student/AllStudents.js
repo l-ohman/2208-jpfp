@@ -13,7 +13,7 @@ const AllStudents = () => {
 
   return (
     <>
-      <div className="leftContainer studentGrid">
+      <div className="studentGrid">
         {students.length > 0 ? students.map((student) => (
           <SingleStudentListed key={student.id} data={student} />
         )) : <h3>No students found!</h3>}

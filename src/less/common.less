@@ -1,4 +1,4 @@
-// Colors and functions
+// Colors and functions (largely unnecessary, but good practice using LESS)
 
 @light: rgb(230, 230, 230);
 @medium: rgb(204, 204, 204);
@@ -17,4 +17,13 @@
     min-height: @min;
     max-width: @max;
     max-height: @max;
+}
+
+.maxHW(@h, @w) {
+    max-height: @h;
+    max-width: @w;
+}
+.minHW(@h, @w) {
+    min-height: @h;
+    min-width: @w;
 }

@@ -23,30 +23,38 @@ const SingleStudentView = () => {
   }, []);
 
   if (!studentStatus || typeof student !== "object") {
-    return (<NotFound type="student" />)
-  }
-  else if (!student.firstName) {
-    return <h2>Loading content...</h2>
+    return <NotFound type="student" />;
+  } else if (!student.firstName) {
+    return <h2>Loading content...</h2>;
   }
   return (
     <div className="singleItemView">
-      <div className="leftContainer">
-        <h1>
-          {student.firstName} {student.lastName}
-        </h1>
-        <p>{student.email}</p>
-        {student.campus ? (
-          <p>
-            {student.firstName} is a student at{" "}
-            <Link to={`/campuses/${student.campus.id}`}>
-              {student.campus.name}
-            </Link>
-          </p>
-        ) : (
-          <p>{student.firstName} is not currently enrolled at any campus</p>
-        )}
-        <img src={student.imageUrl ? student.imageUrl : "/images/noUserImage.png"} alt="Student image" />
-        <p>Current GPA: {(+student.gpa).toPrecision(2)}</p>
+      <div className="leftContainer singleStudentView">
+        <img
+          src={student.imageUrl ? student.imageUrl : "/images/noUserImage.png"}
+          alt="Student image"
+        />
+        <div className="singleStudentViewInfo">
+          <h1>
+            {student.firstName} {student.lastName}
+          </h1>
+          <p>{student.email}</p>
+          {student.campus ? (
+            <p>
+              {student.firstName} is a student at{" "}
+              <Link to={`/campuses/${student.campus.id}`}>
+                {student.campus.name}
+              </Link>
+            </p>
+          ) : (
+            <p>{student.firstName} is not currently enrolled at any campus</p>
+          )}
+          {student.gpa ? (
+            <p>Current GPA: {(+student.gpa).toPrecision(2)}</p>
+          ) : (
+            <p>{student.firstName} does not have a GPA on record</p>
+          )}
+        </div>
       </div>
       <StudentForm isEdit={true} />
     </div>
