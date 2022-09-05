@@ -18,12 +18,13 @@
       margin: 0;
     }
     @itemPadding: 8px;
+    .basicShadow(1.9, gray);
 
     width: 90%;
     max-width: 400px;
     height: @scale * 1.07;
 
-    background-color: @medium;
+    background-color: @itemColor;
     margin: 5px 12px 17px;
     overflow: hidden;
 
@@ -34,10 +35,9 @@
       height: @imgScale * 1.5 + @itemPadding * 2;
       
       display: flex;
-      // justify-content: center;
       align-items: center;
 
-      background-color: @mediumDark;
+      background-color: rgb(203, 203, 203);
       padding: @itemPadding * 1.5;
 
       h2 {
@@ -52,17 +52,15 @@
     }
 
     &Info {
-      padding-top: 6px;
+      padding-top: 9px;
       p {
         padding: @itemPadding @itemPadding 0 @itemPadding;
-        // padding: @itemPadding;
       }
       overflow-wrap: break-word;
     }
 
     .deleteBtn {
-      margin: auto;
-      margin-bottom: 12px;
+      margin: 14px auto;
     }
   }
 }
@@ -75,13 +73,13 @@
     margin: 0;
   }
 
-  background-color: @medium;
+  background-color: @itemColor;
+  .basicShadow(2.8, gray);
   padding: @contPadding;
   padding-bottom: @imageWrapMargin;
 
   img {
     .maxHW(375px, 500px);
-    // .minHW(150px, 150px);
     float: right;
     margin: 0 0 @imageWrapMargin @imageWrapMargin;
   }
@@ -94,7 +92,6 @@
       margin-bottom: 15px;
     }
     p {
-      // margin-top: 4px;
       font-size: 1.1em;
     }
   }

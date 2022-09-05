@@ -1,14 +1,30 @@
 // Navbar, footer, buttons, links, etc
 @import "common";
 
-// Navbar and footer //
+@dark: #30362f;
+@headerFooterText: rgb(228, 228, 228);
+
 #navbar,
 #footer {
   width: 100%;
   text-align: center;
-  background-color: @mediumDark;
+  background-color: @dark;
+  .basicShadow(1, @dark);
+
   display: flex;
   justify-content: space-around;
+
+  * {
+    color: @headerFooterText;
+  }
+
+  a {
+    text-decoration: none;
+    &:hover {
+      @n: 235;
+      color: multiply(@headerFooterText, rgb(@n, @n, @n));
+    }
+  }
 }
 
 #footer {
@@ -16,35 +32,29 @@
   bottom: 0%;
   height: @footerHeight;
   align-items: center;
-  font-style: italic;
 }
 
-// Links //
-a {
-  color: black;
-
-  &:hover {
-    color: @dark;
-  }
-}
-
-// Buttons //
 .deleteBtn,
 .unregisterBtn {
-  background-color: darkred;
+  width: fit-content;
+  height: fit-content;
+  border: 0;
+
+  background-color: @redAccent;
   color: white;
-  border: 1px solid white;
+
   &:hover {
-    background-color: red;
+    background-color: rgb(190, 39, 39);
   }
 }
 
 .deleteBtn {
   padding: 8px;
   font-weight: bold;
+  border-radius: 5px;
+  .basicShadow(1.4, gray);
 }
-
-.unregisterBtn, .deleteBtn {
-  width: fit-content;
-  height: fit-content;
+.unregisterBtn {
+  border-radius: 3px;
+  .basicShadow(1.1, gray);
 }

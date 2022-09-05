@@ -1,15 +1,11 @@
-// Colors and functions (largely unnecessary, but good practice using LESS)
-
-@light: rgb(230, 230, 230);
-@medium: rgb(204, 204, 204);
-@mediumDark: rgb(161, 161, 161);
-@dark: rgb(79, 79, 79);
-
 @footerHeight: 50px;
 
-@flexGrid: {
-    display: flex;
-    flex-flow: row wrap;
+@bg: rgb(235, 235, 235);
+@itemColor: rgb(240, 240, 240);
+@redAccent: #93032E;
+
+.basicShadow(@scale, @color) {
+    box-shadow: 0 @scale*1px @scale*4px @color;
 }
 
 .squareMinMaxHW(@min, @max) {

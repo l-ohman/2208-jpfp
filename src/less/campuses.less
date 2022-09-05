@@ -12,11 +12,10 @@
   @contPadding: 25px;
 
   &Item {
-    // min-height: @scale*0.9;
-    // max-height: 100%;
-    min-width: 500px;
+    background-color: @itemColor;
+    .basicShadow(1.9, gray);
 
-    background-color: @medium;
+    min-width: 500px;
     padding: 18px 20px;
     margin-bottom: 20px;
 
@@ -26,8 +25,6 @@
 
     &Left {
       height: 100%;
-      // background-color: yellow;
-
       h2,
       p {
         margin: 0 3px 12px;
@@ -39,7 +36,6 @@
 
     img {
       .maxHW(@scale*0.9, 300px);
-      // float: right;
     }
 
     .deleteBtn {
@@ -59,8 +55,8 @@
   }
 
   .singleCampusView {
-    background-color: @medium;
-
+    background-color: @itemColor;
+    .basicShadow(2.8, gray);
     padding: 20px;
 
     .imgContainer {
@@ -81,26 +77,29 @@
     }
 
     .studentListCampusPage {
-      max-width: 800px;
+      max-width: 90%;
       margin: auto;
-      margin-bottom: @footerHeight + 15px;
-      display: flex;
-      flex-flow: row wrap;
-      // justify-content: center;
+      margin-bottom: @footerHeight + 25px;
+
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(@scale * 1.6, 1fr));
+      justify-items: center;
 
       .singleStudentCampusPage {
         width: 350px;
         height: 1.5em;
         margin: 3px 15px;
         padding: 1em 10px;
-        background-color: @medium;
+        background-color: @itemColor;
+        .basicShadow(1.5, rgb(148, 148, 148));
         display: flex;
         align-items: center;
         justify-content: space-between;
       }
 
       #noStudentsAtCampus {
-        margin: 0;
+        position: absolute;
+        bottom: 60px;
       }
     }
   }
