@@ -5,6 +5,7 @@ const {
   streetSuffixes,
   descriptions,
   campusSuffixes,
+  campusImages,
   lastNames,
   firstNames,
   emailSuffixes,
@@ -51,7 +52,6 @@ const getSomeImageUrls = (imgCount, xResolution = 300, yResolution = 300) => {
 }
 // Maybe should somewhat randomize the resolution as well...
 let studentImages = getSomeImageUrls(10)
-let campusImages = getSomeImageUrls(5, 1500, 900)
 
 // --- CAMPUS CREATION --- //
 

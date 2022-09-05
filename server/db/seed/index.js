@@ -1,6 +1,8 @@
 const createSeedDataSet = require("./seedGeneration");
 
-// let [campuses, students] = createSeedDataSet(109, 1283);
-let [campuses, students] = createSeedDataSet(5, 35);
+let campusesToGenerate = 13;
+let studentsToGenerate = 121;
+
+let [campuses, students] = createSeedDataSet(campusesToGenerate, studentsToGenerate);
 
 module.exports = { campuses, students };
