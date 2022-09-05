@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, Link } from "react-router-dom";
 
-import { EditStudentForm, NotFound, StudentForm } from "../";
+import { NotFound, StudentForm } from "../";
 import { fetchSingleItem } from "../../store/singleItem";
 
 const SingleStudentView = () => {

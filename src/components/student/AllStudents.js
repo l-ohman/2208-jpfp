@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { SingleStudentListed, NewStudentForm, StudentForm } from "../";
+import { SingleStudentListed, StudentForm } from "../";
 import { updateSingleItem } from "../../store/singleItem";
 
 const AllStudents = () => {

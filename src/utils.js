@@ -8,18 +8,14 @@ export const fixObjectForForm = (student) => {
 
 export const fixObjectForDatabase = (student, campuses) => {
   const studentCopy = { ...student };
-
-  delete studentCopy.fullName; // This cannot be set in the db
+  delete studentCopy.fullName;
 
   // If form contains an empty string, don't set 'gpa' to 0
   if (studentCopy.gpa === "") {
     delete studentCopy.gpa;
-  } else {
-    // Prevent 'NaN' from being sent
   }
 
   if (studentCopy.campusId) {
-    // For updating singleItem view
     const updatedCampusForStudent = campuses.find(
       (campus) => campus.id == studentCopy.campusId
     );

@@ -14,7 +14,6 @@ const SingleCampusView = () => {
   const [campusStatus, setCampusStatus] = React.useState(true);
 
   React.useEffect(() => {
-    // Verifies that ID in URL is an integer
     if (isNaN(Number(campusId))) {
       setCampusStatus(false);
     } else {

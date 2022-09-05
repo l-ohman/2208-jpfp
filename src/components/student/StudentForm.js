@@ -10,8 +10,7 @@ import {
 } from "../../utils";
 
 const StudentForm = ({ isEdit }) => {
-  // if 'isEdit' is true, the form is for editing; else it is for creating new student
-  const campuses = useSelector((state) => state.campuses); // Used in both forms
+  const campuses = useSelector((state) => state.campuses);
   const dispatch = useDispatch();
 
   let singleItem;
@@ -45,7 +44,6 @@ const StudentForm = ({ isEdit }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // studentFormValidityCheck returns false if the form is valid (or a string containing the reason for invalidity)
     let invalidFormMessage = studentFormValidityCheck(form);
     if (invalidFormMessage) {
       alert(invalidFormMessage);

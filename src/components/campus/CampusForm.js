@@ -6,7 +6,6 @@ import { updateSingleItem } from "../../store/singleItem";
 import { campusFormValidityCheck } from "../../utils";
 
 const CampusForm = ({ isEdit }) => {
-  // if 'isEdit' is true, the form is for editing; else it is for creating new student
   const dispatch = useDispatch();
 
   let singleItem;
